@@ -1,0 +1,6 @@
+framework module Pods_SP_PODS_SP_PODSUITests {
+  umbrella header "Pods-SP_PODS-SP_PODSUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
