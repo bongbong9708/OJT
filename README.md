@@ -5,9 +5,11 @@ OJT 교육일지
   - [앱 생명주기](https://github.com/bongbong9708/OJT#1-%EC%95%B1-%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0app-lifecycle)
   - [뷰컨트롤러 생명주기](https://github.com/bongbong9708/OJT#2-%EB%B7%B0%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0viewcontroller-lifecycle)
 - UI 구성
-  - XIB
+  - Interface Builder
   - 스토리보드
+    - XIB
   - SwiftUI
+    - SwiftUI vs Interface Builder and Storyboard
 - 모델
 
 ## iOS 라이프 사이클
@@ -88,7 +90,7 @@ iOS에서 한 화면에서 다른 화면으로 전환할 때 기존의 화면 �
   - 시간이 오래 걸리는 작업은 하지 않는 것이 좋음
   
 [출처] 
-
+-----
 [앱 생명주기 vs 뷰컨트롤러 생명주기](https://medium.com/ios-development-with-swift/%EC%95%B1-%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0-app-lifecycle-vs-%EB%B7%B0-%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0-view-lifecycle-in-ios-336ae00d1855)
 
 [앱의 생명주기와 앱의 구조](https://jinshine.github.io/2018/05/28/iOS/%EC%95%B1%EC%9D%98%20%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0(App%20Life%20Cycle)%EC%99%80%20%EC%95%B1%EC%9D%98%20%EA%B5%AC%EC%A1%B0(App%20Structure)/)
@@ -99,7 +101,27 @@ iOS에서 한 화면에서 다른 화면으로 전환할 때 기존의 화면 �
 
 ## UI 구성 
 
-### 1. XIB
+### 1. Interface Builder
+Xcode 내의 Interface Builder 편집기는 코드를 작성하지 않고 전체 사용자 인터페이스를 간단하게 디자인할 수 있도록 해줍니다. 간단하게 윈도우, 단추, 텍스트 필드 및 기타 대상체를 디자인 캔버스로 드래그 앤 드롭하여 작동하는 사용자 인터페이스를 만들 수 있습니다.
+ - Cocoa 및 Cocoa Touch가 모델-뷰-컨트롤러 패턴을 사용하여 구축되어 있어 구현과는 별도로 인터페이스를 손쉽게 독립적으로 디자인할 수 있습니다.
+ - 사용자 인터페이스는 실제로 Cocoa 또는 Cocoa Touch 대상체(.nib 파일로 저장됨)로 아카이브되며 macOS 및 iOS에서 앱 실행 시 UI와 코드 간에 연결을 동적으로 생성합니다.
+![image](https://user-images.githubusercontent.com/88380643/146872811-69a1ec62-dd88-4326-a8d4-b4d7b0c26a8c.png)
+
+### 2. 스토리보드
+완전한 iOS 앱은 사용자가 탐색하는 여러 뷰로 구성됩니다. 이러한 뷰 간의 관계는 앱의 흐름을 전체적으로 보여주는 스토리보드로 정의 됩니다. Interface Builder의 스토리보드 디자이너는 새로운 뷰를 쉽게 생성 및 설계하고 이러한 뷰를 한데 연결하여 사용자 설정 코드 준비가 완료된 완전한 사용자 인터페이스를 만들 수 있도록 해줍니다.
+Storyboard란 앱의 흐름을 나타내며, 시각적으로 화면을 구성하는 곳이며 iOS 앱의 사용자 인터페이스를 시각적으로 표현하여 컨텐츠 화면과 화면 간의 연결을 보여주는 도구입니다. 스토리보드는 일련의 장면(scenes)로 구성되며, 각 scene은 뷰 컨트롤러와 해당 뷰를 나타냅니다.
+- Storyboard Controller
+  - Table View 컨트롤러
+  - Collection View 컨트롤러
+  - Search 컨트롤러
+  - Tab Bar 컨트롤러
+  - Page View 컨트롤러
+  - GLKit View 컨트롤러
+
+![image](https://user-images.githubusercontent.com/88380643/146870951-43b310a8-d62f-432a-8392-cb1a8070a0d8.png)
+
+#### XIB
+--------
 Xcode Interface Builder의 약자로, 화면을 구성하는 클래스 들을 XML문법에 맞춰 저장되고 있습니다. 바이너리로 저장하지 않고 XML형태로 저장하기 때문에 수정된 부분을 알 수 있어서 파일 관리가 아닌 소스코드로 관리로 가능해졌습니다. 직접 수정하려면 XML문법을 맞춰서 수정해야되기 때문에 번거로울 수 있지만, Xcode에서는 Interface Builder를 제공하여 XML 형태가 아닌 그래픽 형태로 수정할 수 있습니다.
 - ViewController를 xib로 사용할 때의 장점
   - xib는 재사용이 쉽지만, storyboard에 있는 ViewController를 재사용하려면 어렵습니다.
@@ -126,7 +148,7 @@ Xcode Interface Builder의 약자로, 화면을 구성하는 클래스 들을 XM
 
 ![image](https://user-images.githubusercontent.com/88380643/146860597-07c5c2e5-88af-45ad-b721-0621dd086b02.png)
 
-### 2. 스토리보드
+
 
 ### 3. SwiftUI
 SwiftUI는 최소한의 코드만으로 Swift의 성능을 사용하여 모든 Apple 플랫폼에서 사용할 수 있는 멋진 앱을 만들 수 있도록 도와주고 어떤 Apple 기기에서나 단 하나의 도구 및 API 세트를 사용할 수 있습니다.
@@ -173,3 +195,25 @@ Xcode는 변경 사항을 즉시 재컴파일하고 실행중인 앱 버전에 �
   - 미리보기
     - SwiftUI 보기 중 하나 또는 여러 개의 미리보기를 생성하여 샘플 데이터를 얻을 수 있으며 큰 서체, 현지화 또는 다크 모드와 같이 사용자에게 모든 항목을 구성할 수 있습니다.
     - 미리보기에서는 UI를 원하는 기기에서 원하는 방향으로 표시할 수 있습니다.
+
+#### SwiftUI vs InterfaceBuilder and Storyboards
+-----
+InterfaceBuilder and Storyboards에 대비해 SwiftUI가 얻을 수 있는 이점
+- SwiftUI는 동시에 두 가지를 제공하기 때문에 더 이상 프로그래밍 방식 또는 스토리보드 기반 디자인에 대해 논쟁할 필요가 없습니다.
+- 코드가 스토리보드 XML보다 훨씬 더 읽기 쉽고 관리하기 쉽기 때문에 사용자 인터페이스 작업을 커밋할 때 소스 제어 문제를 생성하는 것에 대해 더 이상 걱정할 필요가 없습니다.
+- 문자열 형식의 API에 대해 더 이상 걱정할 필요가 없습니다. 일부는 있지만 훨씬 적습니다. 
+- 더 이상 존재하지 않는 함수를 호출하는 것에 대해 걱정할 필요가 없습니다. 사용자 인터페이스가 Swift 컴파일러에 의해 확인되기 때문입니다.
+
+[출처]
+-
+[Interface Builder](https://developer.apple.com/kr/xcode/interface-builder/)
+
+[스토리보드를 통한 기본 화면 구성](https://scshim.tistory.com/29)
+
+[xib로 ViewController 만들기](https://ios-development.tistory.com/387)
+
+[xib 기본 사용법](https://velog.io/@kimin/xib-%EA%B8%B0%EB%B3%B8%EC%82%AC%EC%9A%A9%EB%B2%95)
+
+[SwiftUI](https://developer.apple.com/kr/xcode/swiftui/)
+
+[SwiftUI vs Interface Builder and storyboards](https://www.hackingwithswift.com/quick-start/swiftui/swiftui-vs-interface-builder-and-storyboards)
