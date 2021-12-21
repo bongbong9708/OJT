@@ -5,7 +5,7 @@ OJT 교육일지
   - [앱 생명주기](https://github.com/bongbong9708/OJT#1-%EC%95%B1-%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0app-lifecycle)
   - [뷰컨트롤러 생명주기](https://github.com/bongbong9708/OJT#2-%EB%B7%B0%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0viewcontroller-lifecycle)
 - UI 구성
-  - Xib
+  - XIB
   - 스토리보드
   - SwiftUI
 - 모델
@@ -99,7 +99,32 @@ iOS에서 한 화면에서 다른 화면으로 전환할 때 기존의 화면 �
 
 ## UI 구성 
 
-### 1. Xib
+### 1. XIB
+Xcode Interface Builder의 약자로, 화면을 구성하는 클래스 들을 XML문법에 맞춰 저장되고 있습니다. 바이너리로 저장하지 않고 XML형태로 저장하기 때문에 수정된 부분을 알 수 있어서 파일 관리가 아닌 소스코드로 관리로 가능해졌습니다. 직접 수정하려면 XML문법을 맞춰서 수정해야되기 때문에 번거로울 수 있지만, Xcode에서는 Interface Builder를 제공하여 XML 형태가 아닌 그래픽 형태로 수정할 수 있습니다.
+- ViewController를 xib로 사용할 때의 장점
+  - xib는 재사용이 쉽지만, storyboard에 있는 ViewController를 재사용하려면 어렵습니다.
+  - ViewController의 객체를 얻기가 쉽습니다. (storyboard를 이용하면 storyboard객체를 통해 ViewController 객체를 얻지만 xib는 nib 이름만 있으면 가능합니다.)  
+
+- XIB 사용법
+1. xib 파일 생성하기 
+
+![image](https://user-images.githubusercontent.com/88380643/146859427-91c6ad03-87be-4c2c-a1a1-e5441665eb8b.png)
+
+2. 원하는 작업을 진행하고 identifier 설정하기
+
+![image](https://user-images.githubusercontent.com/88380643/146859236-42c82ffc-295a-41e2-9fd0-706a3965dcd3.png)
+
+3. IBOutlet 연결하기
+
+![image](https://user-images.githubusercontent.com/88380643/146859766-3502f654-2777-4520-8d19-38c4ccd2fb34.png)
+
+4. ViewController의 viewDidLoad에서 xib 셀을 등록하기
+
+![image](https://user-images.githubusercontent.com/88380643/146859932-edc49562-54a2-424c-a5b7-0c8685c385f4.png)
+
+5. 원하는 형식으로 표현하기
+
+![image](https://user-images.githubusercontent.com/88380643/146860597-07c5c2e5-88af-45ad-b721-0621dd086b02.png)
 
 ### 2. 스토리보드
 
