@@ -4,12 +4,12 @@ OJT 교육일지
 - [iOS 라이프 사이클](https://github.com/bongbong9708/OJT#ios-%EB%9D%BC%EC%9D%B4%ED%94%84-%EC%82%AC%EC%9D%B4%ED%81%B4)
   - [앱 생명주기](https://github.com/bongbong9708/OJT#1-%EC%95%B1-%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0app-lifecycle)
   - [뷰컨트롤러 생명주기](https://github.com/bongbong9708/OJT#2-%EB%B7%B0%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0viewcontroller-lifecycle)
-- UI 구성
-  - Interface Builder
-  - 스토리보드
-    - XIB
-  - SwiftUI
-    - SwiftUI vs Interface Builder and Storyboard
+- [UI 구성](https://github.com/bongbong9708/OJT/blob/main/README.md#ui-%EA%B5%AC%EC%84%B1)
+  - [Interface Builder](https://github.com/bongbong9708/OJT/blob/main/README.md#1-interface-builder)
+  - [스토리보드](https://github.com/bongbong9708/OJT/blob/main/README.md#2-storyboard)
+    - [XIB](https://github.com/bongbong9708/OJT/blob/main/README.md#xib)
+  - [SwiftUI](https://github.com/bongbong9708/OJT/blob/main/README.md#3-swiftui)
+    - [SwiftUI vs Interface Builder and Storyboard](https://github.com/bongbong9708/OJT/blob/main/README.md#swiftui-vs-interfacebuilder-and-storyboards)
 - 모델
 
 ## iOS 라이프 사이클
@@ -107,7 +107,7 @@ Xcode 내의 Interface Builder 편집기는 코드를 작성하지 않고 전체
  - 사용자 인터페이스는 실제로 Cocoa 또는 Cocoa Touch 대상체(.nib 파일로 저장됨)로 아카이브되며 macOS 및 iOS에서 앱 실행 시 UI와 코드 간에 연결을 동적으로 생성합니다.
 ![image](https://user-images.githubusercontent.com/88380643/146872811-69a1ec62-dd88-4326-a8d4-b4d7b0c26a8c.png)
 
-### 2. 스토리보드
+### 2. Storyboard
 완전한 iOS 앱은 사용자가 탐색하는 여러 뷰로 구성됩니다. 이러한 뷰 간의 관계는 앱의 흐름을 전체적으로 보여주는 스토리보드로 정의 됩니다. Interface Builder의 스토리보드 디자이너는 새로운 뷰를 쉽게 생성 및 설계하고 이러한 뷰를 한데 연결하여 사용자 설정 코드 준비가 완료된 완전한 사용자 인터페이스를 만들 수 있도록 해줍니다.
 Storyboard란 앱의 흐름을 나타내며, 시각적으로 화면을 구성하는 곳이며 iOS 앱의 사용자 인터페이스를 시각적으로 표현하여 컨텐츠 화면과 화면 간의 연결을 보여주는 도구입니다. 스토리보드는 일련의 장면(scenes)로 구성되며, 각 scene은 뷰 컨트롤러와 해당 뷰를 나타냅니다.
 - Storyboard Controller
