@@ -10,7 +10,12 @@ OJT 교육일지
     - [XIB](https://github.com/bongbong9708/OJT/blob/main/README.md#xib)
   - [SwiftUI](https://github.com/bongbong9708/OJT/blob/main/README.md#3-swiftui)
     - [SwiftUI vs Interface Builder and Storyboard](https://github.com/bongbong9708/OJT/blob/main/README.md#swiftui-vs-interfacebuilder-and-storyboards)
-- 모델
+- 개발 모델
+  - [MVC 패턴]
+  - [MVVM 패턴]
+  - [MVP 패턴]
+  - [VIPER 패턴]
+  - [VIP 패턴]
 
 ## iOS 라이프 사이클
 
@@ -217,3 +222,204 @@ InterfaceBuilder and Storyboards에 대비해 SwiftUI가 얻을 수 있는 이�
 [SwiftUI](https://developer.apple.com/kr/xcode/swiftui/)
 
 [SwiftUI vs Interface Builder and storyboards](https://www.hackingwithswift.com/quick-start/swiftui/swiftui-vs-interface-builder-and-storyboards)
+
+-----------------------------------------------------------------------
+
+## 개발 모델
+
+### 1. MVC Pattern
+![01](https://user-images.githubusercontent.com/88380643/147016094-6ccd0355-564a-4bd3-880d-c2d6b7c4bac1.png)
+
+Controller가 다리 역할이 되어 View의 입력을 Model에 반영하고 Model의 변화에 맞게 View를 갱신합니다.
+
+- 역할
+  - Model : 프로그램에서 사용되는 실제 데이터 및 데이터 조작 로직을 처리하는 부분
+  - View : 사용자에게 제공되어 보여지는 UI
+  - Controller : 사용자의 압력을 받고 처리하는 부분
+
+- 동작원리
+  1. Controller로 사용자의 입력이 들어옵니다.
+  2. Controller는 Model을 데이터 업데이트 및 불러옵니다.
+  3. Model은 해당 데이터를 보여줄 View를 선택해서 화면에 보여주게 됩니다.
+
+![2](https://user-images.githubusercontent.com/88380643/147017456-a29dbc8e-5216-4da3-be20-770a647b980a.png)
+
+하지만 Apple에서의 MVC 작동 원리는 다르게 작동합니다. View와 Controller가 강하게 연결되어 있기 때문에 ViewController가 거의 모든 일을 하게 되어 있고, 그래서 Model만 따로 놀게 됩니다.
+
+- 장점
+  - 다른 패턴에 비해 코드량이 적고 설계가 단순하기 때문에 가장 쉽고 빠르게 개발이 가능합니다.
+  - 애플에서 MVC를 지향하고 있기 때문에 기본 LifeCycle에 맞는 개발이 가능합니다.
+
+- 단점
+  - View와 Controller가 붙어 있으며, Controller가 View의 Life Cycle까지 관리하기 때문에 View와 Controller를 분리하기 어렵다. 
+  - Controller의 역할이 방대해져서 모듈화하는 부분이 무의미해질 수 있습니다.(Massive View Controller)
+  - 대규모 프로젝트에는 방대해지기 때문에 비적합합니다
+
+### 2. MVVM Pattern
+![3](https://user-images.githubusercontent.com/88380643/147018226-337c3bbf-ab8a-4297-8da8-dbf7477cc01d.png)
+
+Controller를 빼고 ViewModel을 추가한 패턴입니다.
+
+- 역할
+  - View
+    - iOS는 ViewController까지 View가 됩니다.
+    - 사용자가 보여지는 View
+    - 유저인터렉션을 받는 역할, 인터렉션ㅇㄹ 받을 시 ViewModel에게 명령을 내립니다.
+  - ViewModel
+    - View를 표현하기 위해 만들어진 View를 위한 Model
+    - View와는 Binding을 연결 후 View의 액션을 받고 View를 업데이트 합니다.
+    - textView에 보여줄 내용을 담당하는 함수 등 View에서 변화가 일어나는 ViewController의 역할을 담당한다.
+  - Model
+    - 데이터, 비즈니스 논리, 서비스 클라이언트 구성 
+    - 실제적 데이터 입니다.
+
+- 동작원리
+  1. View에 입력이 들어오면 ViewModel에 명령을 합니다.
+  2. ViewModel은 필요한 데이터를 Model에 요청합니다.
+  3. Model은 ViewModel에 필요한 데이터를 응답합니다.
+  4. ViewModel은 응답 받은 데이터를 가공해서 저장합니다.
+  5. View는 ViewModel과의 DataBinding으로 인해 자동으로 갱신됩니다.
+
+UIImage 혹은 View에 값을 수정하는 것을 ViewModel에서 하면 안됩니다. 혹은 View의 lifecycle에 의존적이거나, View를 레퍼런스로 받아 뷰의 값을 직접 변경하는 일도 UI와 관련된 것으로 간주합니다.
+
+- 장점
+  - View와 Model이 서로 전혀 알지 못하기에 독립성을 유지할 수 있다.
+  - 독립성을 유지하기 때문에 효율적인 유닛테스트가 가능하다.
+  - View와 ViewModel을 바인딩하기 때문에 코드의 양이 작다.
+  - View와 ViewModel의 관계는 N:1이다.
+  - ViewModel에는 UIKit 관련 코드가 없고 Controller와의 의존성도 없기 때문에 Unittest하기 편하다.
+  
+- 단점
+  - 단순한 프로젝트를 개발하기에는 MVC에 비해서는 시간이 오래걸린다.
+  - 간단한 UI에서 오히려 ViewModel 을 설계하는 어려움이 있을 수 있다.
+  - 데이터 바인딩이 필수적으로 요구된다. 다양한 바인딩이 가능하다.
+  - 복잡해질수록 Controller처럼 ViewModel이 빠르게 비대해진다.
+  - 표준화된 틀이 존재하지 않아 사람마다 이해가 다르다.
+
+- DataBinding
+  - Model과 UI요소 간의 싱크를 맞춰주는 것
+  - 이 패턴을 통해 View와 로직이 분리되어 있어도 한 쪽이 바뀌면 다른 쪽도 업데이트가 이루어져 데이터의 일관성을 유지할 수 있다.
+  - iOS에서 데이터 바인딩을 하는 방법
+    - KVO
+    - Delegation
+    - Functional Reactive Programming
+    - Property Observer  
+
+### 3. MVP Pattern
+![4](https://user-images.githubusercontent.com/88380643/147022166-2cecc1c6-156f-4898-beba-1bca90052777.png)
+
+View와 Model의 의존성을 없애기 위해서 Present를 존재하게 하기 위해 MVC에서 Controller를 제거하고 Presenter를 구성했습니다.
+
+- 역할
+  - Model
+    - 프로그램에서 사용되는 실제 데이터 및 데이터 조작 로직을 처리하는 부분
+    - domain Data 또는 데이터를 다루는 data access layer를 담당하는 카테고리
+  - View
+    - 사용자에게 제공되어 보여지는 UI
+  - Presenter
+    - View에서 요청한 정보를 Model로부터 가공해서 View로 전달하는 부분
+    - Presenter에서 어떠한 layout code도 담겨져 있지 않다.
+    - View의 데이터와 상태를 Updating 해주는 역할을 맡았다.
+
+- 동작원리
+  1. View로 사용자의 입력이 들어옵니다.
+  2. View는 Presenter에 작업을 요청합니다.
+  3. Presenter에서 필요한 데이터는 Model에 요청합니다.
+  4. Model은 Presenter에 필요한 데이터를 응답합니다.
+  5. Presenter는 View에 데이터를 응답합니다.
+  6. View는 Present로부터 받은 데이터로 화면에 보여줍니다.
+
+- 장점
+  - 대부분의 책임을 Presenter와 Model이 가지고 있어 View는 출력만 하는 역할을 한다.
+  - Test할 때 View에 대한 책임이 분리되어 있기에 각 요소들을 독립적으로 테스트할 수 있다.
+  - MVC보다 각 요소들의 역할이 명확해졌다.
+
+- 단점
+  - View와 Presenter가 1:1 관계이다.
+  - MVC에 비해서는 코드가 더 많이 늘어나 진다.
+
+### 4. VIPER Pattern
+![5](https://user-images.githubusercontent.com/88380643/147023656-b3ab1e62-0750-4616-a51e-f1619f38db74.png)
+
+MV(X)의 패턴을 대체하기 위해 만들어진 패턴입니다.
+
+- 역할 
+  - View
+    - 사용자가 보여지는 View. 유저인터렉션을 받는 역할입니다.
+    - 이벤트 발생시 Presenter에 해당 일을 전달합니다.
+    - Present의 요청대로 디스플레이하고 사용자 입력을 Presenter로 보내는 작업을 합니다.
+  - Presenter
+    - Entity로 부터 받은 업데이트 이벤트를 실행하지만 데이터를 직접보내지는 않는다.
+    - View 모델의 변경사항을 Interactor에 알린다.
+    - 언제의 타이밍을 아는 존재
+    - Interactor로 부터 데이터를 가져오고 View로 보내기 위해 데이터를 준비하여 언제 View를 보여줄지 결정합니다.
+  - Interactor
+    - Presenter로 부터 받은 모델 변경사항에 따라 Entity에 접속하여 Entity로 부터 수신한 데이터를 Presenter로 전달합니다. 
+    - Use Case에 따라서 Entity 모델 객체를 조작하는 로직을 담았습니다.
+  - Entity
+    - 객체에 구성된 부분을 Interactor에 의해 제어합니다.
+    - 순수 모델 객체 입니다.
+  - Routing
+    - Wireframe이라고 불리기도 하고, UIWindow와 UINavigationController에서 화면간의 탐색을 위한 라우팅을 담당한다.
+    - 화면 전환을 담한다.(Presenter는 언제 화면이 전환이라면 Router는 어떻게 하는지 담당한다.)
+
+- 장점
+  - 각 도메인의 역할이 명확하게 구분됩니다.
+  - 모듈을 작게 역할을 분명히 하기에 대규모 프로젝트에 적합합니다.
+
+- 단점
+  - 설계가 여러 곳으로 난립합니다.
+  - 명확한 가이드나 유지보수 되는 곳이 없습니다.
+  - 많은 파일들을 생성합니다.
+
+### 5. VIP Pattern
+![6](https://user-images.githubusercontent.com/88380643/147033873-63d71527-78be-4ff7-8bcd-1b9380f2cc0c.png)
+
+VIP패턴은 VIPER 패턴과 디렉토리와 생성되는 클래스는 동일하지만 플로우를 다른 관점에서 보는 아키텍처
+VIPER는 위의 그림처럼 양방향으로 로직이 순환해서 순환참조에 의한 메모리 누수가 날 수 있고, 또한 하나의 액션의 기대 결과값을 의해 각 클래스의 프로토콜에 메소드를 만들어야하지만 
+VIP는 닫는 방향으로 로직이 순환해서 액션에 대한 결과값을 보여주는 형태이다.
+
+- 역할
+  - View
+    - 스토리보드, XiB와 같은 사용자와 상호작용이 발생하는 인터페이스
+  - Controller
+    - View를 코드에 바인딩하는 레이어
+  - Interactor
+    - Controller의 요청을 보내야하는 비지니스 로직 계층
+  - Presenter
+    - Interactor로 부터 받은 형태를 View에 맞게 전달할 수 있게 Controller에게 전달
+  - Router
+    - Controller에서 발생한 이벤트를 다른 user case에 전달하는 역할
+
+- 동작원리
+  1. View가 사용자의 인터페이스를 만듭니다.
+  2. Controller에서 이벤트가 발생하여 모델을 요청 후 Interactor를 호출합니다.
+  3. Interactor에서는 기본 코어 라이브러리를 호출하여 데이터를 액세스합니다.
+  4. Interactor에서 비지니스로직을 처리하고 결과를 다시 Presenter로 보냅니다.
+  5. Presenter에서 Interactor에서 받은 결과에 대한 UI처리를 Controller에 전달하고 View에서 보여줌
+VIPER와 다르게 액션에 대한 비지니스 로직을 Presneter를 통하지 않고 Interactor를 요청하여 변화를 주어 단방향으로 플로우가 진행된다.
+
+- 장점
+  - 컴포넌트가 단단히 연결되어 있지 않아 유연하고, 확장가능하며, 유지관리가 가능하다.
+  - 프로토콜로 서로 참조합니다.
+  - 모든 layer가 인터페이스로 되어 있기에 테스트에 용이합니다.
+
+- 단점
+  - layer끼리 전달할 때 request/response 모델을 랩핑해야하는 불편함이 존재한다.
+  - 모델을 랩핑하지 않으면 컴포넌트가 결합될 수 있다.
+  - 비동기 액션에 대한 처리가 별도로 필요합니다.
+
+
+[출처]
+-
+[iOS Architecture Patterns](https://medium.com/ios-os-x-development/ios-architecture-patterns-ecba4c38de52)
+
+[MVP, MVVM, MVP, VIPER, VIP를 알아봅시다.](https://dev-leeyang.tistory.com/21)
+
+[MVC 패턴에 대해 알아보자](https://velog.io/@zooneon/iOS-MVC-패턴에-대해-알아보자)
+
+[MVVM패턴? 어떤 장점이 있을까?](https://velog.io/@sso0022/iOS-MVC-와-MVVM)
+
+[MVP](https://jiyeonlab.tistory.com/37?category=818842)
+
+[iOS 아키텍처 패턴 VIPER](https://bugle.tistory.com/48)
