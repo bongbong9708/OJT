@@ -10,12 +10,12 @@ OJT 교육일지
     - [XIB](https://github.com/bongbong9708/OJT/blob/main/README.md#xib)
   - [SwiftUI](https://github.com/bongbong9708/OJT/blob/main/README.md#3-swiftui)
     - [SwiftUI vs Interface Builder and Storyboard](https://github.com/bongbong9708/OJT/blob/main/README.md#swiftui-vs-interfacebuilder-and-storyboards)
-- 개발 모델
-  - [MVC 패턴]
-  - [MVVM 패턴]
-  - [MVP 패턴]
-  - [VIPER 패턴]
-  - [VIP 패턴]
+- [개발 모델](https://github.com/bongbong9708/OJT#%EA%B0%9C%EB%B0%9C-%EB%AA%A8%EB%8D%B8)
+  - [MVC 패턴](https://github.com/bongbong9708/OJT#1-mvc-pattern)
+  - [MVVM 패턴](https://github.com/bongbong9708/OJT#2-mvvm-pattern)
+  - [MVP 패턴](https://github.com/bongbong9708/OJT#3-mvp-pattern)
+  - [VIPER 패턴](https://github.com/bongbong9708/OJT#4-viper-pattern)
+  - [VIP 패턴](https://github.com/bongbong9708/OJT#5-vip-pattern)
 
 ## iOS 라이프 사이클
 
