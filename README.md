@@ -16,6 +16,12 @@ OJT 교육일지
   - [MVP 패턴](https://github.com/bongbong9708/OJT#3-mvp-pattern)
   - [VIPER 패턴](https://github.com/bongbong9708/OJT#4-viper-pattern)
   - [VIP 패턴](https://github.com/bongbong9708/OJT#5-vip-pattern)
+- Swift 기초 1
+  - Playground
+  - 데이터 타입(Safe)
+  - Typealias
+  - Tuple
+
 
 ## iOS 라이프 사이클
 
@@ -94,7 +100,7 @@ iOS에서 한 화면에서 다른 화면으로 전환할 때 기존의 화면 �
   - viewController의 content view가 뷰 계층에 제거된 직후(화면에서 완전히 사라지고 난 후)에 호출
   - 시간이 오래 걸리는 작업은 하지 않는 것이 좋음
   
-[출처] 
+[Reference] 
 -----
 [앱 생명주기 vs 뷰컨트롤러 생명주기](https://medium.com/ios-development-with-swift/%EC%95%B1-%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0-app-lifecycle-vs-%EB%B7%B0-%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0-view-lifecycle-in-ios-336ae00d1855)
 
@@ -209,7 +215,7 @@ InterfaceBuilder and Storyboards에 대비해 SwiftUI가 얻을 수 있는 이�
 - 문자열 형식의 API에 대해 더 이상 걱정할 필요가 없습니다. 일부는 있지만 훨씬 적습니다. 
 - 더 이상 존재하지 않는 함수를 호출하는 것에 대해 걱정할 필요가 없습니다. 사용자 인터페이스가 Swift 컴파일러에 의해 확인되기 때문입니다.
 
-[출처]
+[Reference]
 -
 [Interface Builder](https://developer.apple.com/kr/xcode/interface-builder/)
 
@@ -410,7 +416,7 @@ VIPER와 다르게 액션에 대한 비지니스 로직을 Presneter를 통하�
   - 비동기 액션에 대한 처리가 별도로 필요합니다.
 
 
-[출처]
+[Reference]
 -
 [iOS Architecture Patterns](https://medium.com/ios-os-x-development/ios-architecture-patterns-ecba4c38de52)
 
@@ -423,3 +429,103 @@ VIPER와 다르게 액션에 대한 비지니스 로직을 Presneter를 통하�
 [MVP](https://jiyeonlab.tistory.com/37?category=818842)
 
 [iOS 아키텍처 패턴 VIPER](https://bugle.tistory.com/48)
+
+-----------------------------------------------------------------------
+
+## Swift 기초 1
+
+### 1. Playground
+![image](https://user-images.githubusercontent.com/88380643/147169658-e502ef4e-57ba-4b3a-b3aa-3025dcb3f66e.png)
+
+별도의 프로젝트 생성 없이 스위프트 코드를 실행할 수 있는 스위프트 코딩환경입니다. 기본 문법 연습에서부터 복잡한 코드 테스트까지 다양한 기능을 이용할 수 있습니다.
+![image](https://user-images.githubusercontent.com/88380643/147170532-f0786de3-9c09-41f9-bb24-2da5e23e81f8.png)
+값이 변경되거나 반복 실행 등의 작업을 하게 되면 과정을 확인할 수 있는 빠른확인 보이기 버튼(Quick Look)이 나타납니다.순서나 결과값을 시각화하여 확인할 수 있습니다.
+![image](https://user-images.githubusercontent.com/88380643/147170980-3b99fcda-e881-4fda-a6af-8d9a6d0dffe3.png)
+또한 PlaygroundSupport라이브러리의 LiveView를 이용하여 동적인 뷰를 볼 수도 있습니다.
+
+### 2. 데이터 타입(Safe)
+Swift는 안정성이 가장 뚜렷하게 나타나는 언어이다. 스위프트의 상수는 코드를 안정되고 깔끔하게 만들 수 있도록 사용된다. 서로 다른 타입끼리의 데이터 교환은 꼭 타입 캐스팅을 거쳐야한다.
+``` swift
+var greeting = "Hello, playground"
+
+let a = 12
+
+let plus = greeting + String(a)   // 정수형을 문자형으로 형변환하지 않을 시 에러
+
+print(plus)
+```
+스위프트에서 값 타입의 데이터 교환은 엄밀히 말하면 타입 캐스팅이 아닌, 새로운 인스턴스를 생성하여 할당하는 것입니다.
+
+#### 데이터 타입 안심
+-----------------
+스위프트는 데이터 타입을 안심하고 사용할 수 있는(Type-Safe) 언어이다. 예를 들어 Int 타입 변수에 할당하려는 값이 Character 타입이라면 컴파일 오류가 발생하게 된다. 이런 오류는 프로그래밍 도중에 눈치채기가 어려워서 컴파일러가 알려주지 않으면 나중에 찾아내기도 쉽지 않습니다. 그렇지만 스위프트는 컴파일 오류로 알려주므로 서로 다른 타입의 값을 할당하는 실수를 줄일 수 있습니다.
+
+#### 타입 추론
+------------
+스위프트에서 변수나 상수를 선언할 때 특정 타입을 명시하지 않아도 컴파일러가 할당된 값을 기준으로 변수나 상수의 타입을 결정합니다.
+``` swift
+var name = "SangBong"   // 타입을 지정하지 않았으나 타입 추론을 통해 String 타입으로 선언
+
+name = 100    // name은 타입 추론에 의해 String 타입으로 지정되어 정수를 할당하려고 하면 오류 발생
+```
+
+
+
+### 3. Typealias
+Swift에서 기본으로 제공하는 데이터 타입이든, 사용자가 임의로 만든 데이터 타입이든 이미 존재하는 데이터 타입에 임의로 다른이름(별칭)을 부여 할 수 있습니다. 그런 다음 기본 타입 이름과 이후에 추가한 별칭을 모두 사용할 수 있습니다.
+``` swift
+typealias MyName = String
+var name: MyName = "상봉"
+print(name)   // 상봉
+```
+``` swift
+enum FruitType {
+  case apple
+  case banana
+  case orange
+}
+
+typealias juiceRecipe = [fruitType : Int]
+
+```
+
+### 4. Tuple
+투플은 타입의 이름이 지정되어 있지 않은, 프로그래머 마음대로 만드는 타입입니다. '지정된 데이터의 묶음'이라고 표현할 수 있습니다. 튜플은 타입 이름이 따로 없으므로 일정 타입의 나열만으로 튜플 타입을 생성해줄 수 있다. 튜플의 포함될 데이터의 개수는 자유롭게 정할 수 있다.
+``` swift
+var person: (String, Int, Double) = ("SangBong", 25, 180.0)
+
+print("이름: \(person.0), 나이: \(person.1), 신장: \(person.2)")    // 이름: SangBong, 나이: 25, 신장: 180.0
+
+// 인덱스를 통해 값을 할당할 수 있습니다.
+person.1 = 26
+person.2 = 179.2
+
+print("이름: \(person.0), 나이: \(person.1), 신장: \(person.2)")    // 이름: SangBong, 나이: 26, 신장: 179.2
+```
+간편해 보일 수 있지만, 차후에 다른 프로그래머가 코드를 볼 때 이름 없이 인덱스만으로 각 요소의 데이터가 무엇을 나타내는지 쉽게 파악하기가 어렵기 때문에 각 요소가 어떤 의미가 있는지 유추하기 어렵습니다. 그래서 튜플의 요소마다 이름을 붙여줄 수 있습니다.
+``` swift
+var person: (name: String, age: Int, height: Double) = ("SangBong", 25, 180.0)
+
+print("이름: \(person.name), 나이: \(person.age), 신장: \(person.height)")    // 이름: SangBong, 나이: 25, 신장: 180.0
+
+// 요소 이름 및 인덱스를 통해 값을 할당할 수 있습니다.
+person.age = 26
+person.2 = 179.2
+
+print("이름: \(person.0), 나이: \(person.1), 신장: \(person.2)")    // 이름: SangBong, 나이: 26, 신장: 179.2
+```
+선언해줄 때마다 긴 튜플 타입을 모두 써야될 상황이 생길 수 있습니다. 이럴 때 타입 별칭을 지정할 수 있습니다.
+``` swift
+typealias PersonTuple = (name: String, age: Int, height: Double)
+
+let me: PersonTuple = (name: "SangBong", age: 25, height: 180.0)
+let you: PersonTuple = (name: "Chae", age: 23, height: 165.7)
+
+print("이름: \(me.name), 나이: \(me.age), 신장: \(me.height)")    // 이름: SangBong, 나이: 25, 신장: 180.0
+print("이름: \(you.name), 나이: \(you.age), 신장: \(you.height)")   // 이름: Chae, 나이: 23, 신장: 165.7
+
+```
+
+[Reference]
+-
+[Playground](https://velog.io/@honeyoung_0117/Playground)
