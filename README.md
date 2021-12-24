@@ -21,10 +21,10 @@ OJT 교육일지
   - [데이터 타입(Safe)](https://github.com/bongbong9708/OJT#2-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85safe)
   - [Typealias](https://github.com/bongbong9708/OJT#3-typealias)
   - [Tuple](https://github.com/bongbong9708/OJT#4-tuple)
-- Swift 기초 2 (Collection Types)
-  - 배열(Array)
-  - Dictionary
-  - Set
+- [Swift 기초 2 (Collection Types)](https://github.com/bongbong9708/OJT/blob/main/README.md#swift-%EA%B8%B0%EC%B4%88-2-collection-types)
+  - [배열(Array)](https://github.com/bongbong9708/OJT/blob/main/README.md#1-%EB%B0%B0%EC%97%B4array)
+  - [Dictionary](https://github.com/bongbong9708/OJT/blob/main/README.md#2-dictionary)
+  - [Set](https://github.com/bongbong9708/OJT/blob/main/README.md#3-set)
 
 ## iOS 라이프 사이클
 
@@ -539,7 +539,7 @@ print("이름: \(you.name), 나이: \(you.age), 신장: \(you.height)")   // 이
 
 ## Swift 기초 2 (Collection Types)
 
-콜렉션의 변경 - 배열, 딕셔너리, 세트를 변수(var)에 할당하면 이 콜렉션은 변경 가능하고 상수(let)에 할당하면 변경 불가능합니다.
+컬렉션 타입의 변경 - 배열, 딕셔너리, 세트를 변수(var)에 할당하면 이 콜렉션은 변경 가능하고 상수(let)에 할당하면 변경 불가능합니다.
 
 ### 1. 배열(Array)
 배열은 같은 타입의 데이터를 일렬로 나열한 후 순서대로 저장하는 형태의 컬렉션 타입입니다.
