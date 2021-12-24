@@ -542,14 +542,127 @@ print("이름: \(you.name), 나이: \(you.age), 신장: \(you.height)")   // 이
 콜렉션의 변경 - 배열, 딕셔너리, 세트를 변수(var)에 할당하면 이 콜렉션은 변경 가능하고 상수(let)에 할당하면 변경 불가능합니다.
 
 ### 1. 배열(Array)
+배열은 같은 타입의 데이터를 일렬로 나열한 후 순서대로 저장하는 형태의 컬렉션 타입입니다.
+- 각기 다른 위치에 같은 값이 들어 갈 수 있습니다.
+``` swift
+// 배열의 선언과 생성
+var names: Array<String> = ["sangbong", "chulsoo", "yunghee"]
+var names: [String] = ["sangbong", "chulsoo", "yunghee"]    // 위와 같은 표현 1
+var names = ["sangbong", "chulsoo", "yunghee"]              // 위와 같은 표현 2
+
+var emptyArray: [Any] = [Any]()         // Any 데이터를 요소로 갖는 빈 배열을 생성
+var emptyArray: [Any] = Array<Any>()    // 위와 같은 표현
+
+var emptyArray: [Any] = []
+print(emptyArray.isEmpty)   // true
+print(names.count)          // 4
+```
+``` swift
+// 배열의 사용
+print(names[0])       // sangbong
+names[2] = "jenny"    
+print(names[2])       // jenny
+print(names[3])       // 인덱스 범위를 벗어나서 오류 발생
+
+names.append("elsa")    // Array의 마지막에 데이터 추가 ["sangbong", "chulsoo", "yunghee", "elsa"]
+names.insert("happy", at: 2)    // 원하는 위치에 데이터 추가 ["sangbong", "chulsoo", "happy", "yunghee", "elsa"]
+names.removeFirst()   // 첫번째 데이터 삭제
+names.removeLast()    // 마지막 데이터 삭제
+names.removeAll()   // 모든 데이터 삭제
+```
+``` swift
+// 배열의 순회 for-in loop
+var names = ["sangbong", "chulsoo", "happy", "yunghee", "elsa"]
+
+for name in names {
+  print(name)
+ }
+ // sangbong
+ // chulsoo
+ // happy
+ // yunghee
+ // elsa
+ 
+ // 배열의 값과 인덱스가 필요할 때는 enumerated() 메소드 사용
+for (num,name) in names.enumerated() {
+  print("\(index + 1). \(value)")
+}
+// 1. sangbong
+// 2. chulsoo
+// 3. happy
+// 4. yunghee
+// 5. elsa
+
+```
 
 ### 2. Dictionary
+딕셔너리는 요소들이 순서 없이 Key와 Value의 쌍으로 구성되는 컬렉션 타입입니다.
+- 딕셔너리에 저장되는 값은 항상 키와 쌍을 이루고 있다.
+- 하나의 딕셔너리 안의 Key는 같은 이름을 중복해서 사용할 수 없습니다. (딕셔너리에서 키는 값을 대변하는 유일한 식별자)
+``` swift
+// 딕셔너리 생성
+var numberForName: Dictionary<String, Int> = Dictionary<String, Int>()    //  키는 String, 값은 Int 타입인 빈 딕셔너리 생성
 
+// 위와 같은 표현
+var numberForName: [String: Int] = [String: Int]()
+var numberForName: [String: Int] = [:]
+```
+``` swift
+// 딕셔너리 사용
+var numberForName: [String: Int] = ["sangbong": 25, "chulsoo": 15, "jenny": 35]
+
+print(numberForName.isEmpty)    // false
+print(numberForName.count)    // 3
+print(numberForName["sangbong"])    // 25
+
+numberForName["max"] = 999    // max라는 키로 999 추가
+print(numberForName["max"])    // 999
+
+numberForName.removeValue(forKey: "sangbong")   // sangbong의 키값을 삭제
+print(numberForName["sangbong"])    // nil
+```
 ### 3. Set
+세트는 같은 타입의 데이터를 순서 없이 하나의 묶음으로 저장하는 형태의 컬렉션타입입니다. 
+- 순서가 중요하지 않거나 각 요소가 유일한 값이어야 하는 경우에 사용합니다.
+- 세트의 요소는 해시 가능한 값이 들어와야 합니다.
+``` swift
+// 세트의 생성
+var names: Set<String> = Set<String>()
+var names: Set<String> = []
 
+var names: Set<String> = ["sangbong", "chulsoo", "happy", "yunghee", "sangbong"]
+print(names.count)    // 4
 
-
+var numbers: [100, 200, 300]    // 타입 추론을 사용하게 되면 컴파일러는 Set가 아닌 Array로 타입 지정
+```
+``` swift
+// 세트의 사용
+var names: Set<String> = ["sangbong", "chulsoo", "happy", "yunghee", "sangbong"]
+print(names.count)    // 4
+names.insert("jenny")
+print(names.count)    // 5
+names.remove("chulsoo")
+pritn(names.count)    // 4
+```
+``` swift
+let firstSet:Set<String> = ["sangbong", "chulsoo", "yunghee", "happy"]
+let secondSet:Set<String> = ["sangbong", "chulsoo", "jenny", "elsa"]
+// 1. 교집합 : ["sangbong", "chulsoo"]
+let intersectSet:Set<String> = firstSet.intersection(secondSet)
+// 2. 여집합 : ["yunghee", "happy", "jenny", "elsa"]
+let symmetricDiffSet:Set<String> = firstSet.symmetricDifference(secondSet)
+// 3. 합집합 : ["sangbong", "chulsoo", "yunghee", "happy", "jenny", "elsa"]
+let unionSet:Set<String> = firstSet.union(secondSet)
+// 4. 차집합 : ["yunghee", "happy"]
+let subtractSet:Set<String> = firstSet.subtracting(secondSet)
+// #. 정렬 : ["chulsoo", "elsa", "happy", "jenny", "sangbong", "yunghee"]
+print(unionSet.sorted())
+```
 
 [Reference]
 -
+[Collection Types](https://xodhks0113.blogspot.com/2019/05/swift-collection-type-array-dictionary.html)
+
 [애플 공식 문서 한글 번역](https://jusung.gitbook.io/the-swift-language-guide/language-guide/04-collection-types)
+
+야곰, 스위프트 프로그래밍 3판 SWIFT5, 한빛미디어
