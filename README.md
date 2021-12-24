@@ -21,7 +21,10 @@ OJT 교육일지
   - [데이터 타입(Safe)](https://github.com/bongbong9708/OJT#2-%EB%8D%B0%EC%9D%B4%ED%84%B0-%ED%83%80%EC%9E%85safe)
   - [Typealias](https://github.com/bongbong9708/OJT#3-typealias)
   - [Tuple](https://github.com/bongbong9708/OJT#4-tuple)
-
+- Swift 기초 2 (Collection Types)
+  - 배열(Array)
+  - Dictionary
+  - Set
 
 ## iOS 라이프 사이클
 
@@ -531,3 +534,22 @@ print("이름: \(you.name), 나이: \(you.age), 신장: \(you.height)")   // 이
 [Playground](https://velog.io/@honeyoung_0117/Playground)
 
 야곰, 스위프트 프로그래밍 3판 SWIFT5, 한빛미디어
+
+-----------------------------------------------------------------------
+
+## Swift 기초 2 (Collection Types)
+
+콜렉션의 변경 - 배열, 딕셔너리, 세트를 변수(var)에 할당하면 이 콜렉션은 변경 가능하고 상수(let)에 할당하면 변경 불가능합니다.
+
+### 1. 배열(Array)
+
+### 2. Dictionary
+
+### 3. Set
+
+
+
+
+[Reference]
+-
+[애플 공식 문서 한글 번역](https://jusung.gitbook.io/the-swift-language-guide/language-guide/04-collection-types)
