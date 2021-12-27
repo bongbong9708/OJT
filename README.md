@@ -28,10 +28,10 @@ OJT 교육일지
     - [리듀스(Reduce)]()
   - [Dictionary](https://github.com/bongbong9708/OJT/blob/main/README.md#2-dictionary)
   - [Set](https://github.com/bongbong9708/OJT/blob/main/README.md#3-set)
-- [Swift 기초 3]()
-  - [열거형]()
-  - [연산자]()
-  - [접근제어]()
+- [Swift 기초 3](https://github.com/bongbong9708/OJT#swift-%EA%B8%B0%EC%B4%88-3)
+  - [열거형](https://github.com/bongbong9708/OJT#1-%EC%97%B4%EA%B1%B0%ED%98%95)
+  - [연산자]
+  - [접근제어]
 
 ## iOS 라이프 사이클
 
@@ -947,8 +947,6 @@ let allCases: [School] = School.allCases
 print(allCases)
 // [School.primary, School.elementary, School.middel, School.high, School.college, School.university, School.graduate]
 ```
-  - 특정 케이스를 플랫폼에 따라 사용할 수 있거나 없는 경우가 생기면 CaseIterable 프로토콜을 채택하는 것만으로는 allCases 프로퍼티를 사용할 수 없습니다.
-  - 이럴 때는 allCases 프로터리를 구현해 주어야 합니다.
 ``` swift
 // 플랫폼별로 사용 조건을 추가하는 경우
 enum School: String, CaseIterable {
@@ -980,7 +978,12 @@ let allCases: [School] = School.allCases
 print(allCases)
 // 실행환경에 따라 다른 결과
 // [School.primary, School.elementary, School.middel, School.high, School.college, School.university, School.graduate]
-
+```
+특정 케이스를 플랫폼에 따라 사용할 수 있거나 없는 경우가 생기면 CaseIterable 프로토콜을 채택하는 것만으로는 allCases 프로퍼티를 사용할 수 없습니다.
+이럴 때는 allCases 프로터리를 구현해 주어야 합니다.
+``` swift
+// 특정 케이스를 플랫폼에 따라 사용할 수 있거나 없는 경우가 생기면 CaseIterable 프로토콜을 채택하는 것만으로는 allCases 프로퍼티를 사용할 수 없습니다.
+// 이럴 때는 allCases 프로터리를 구현해 주어야 합니다.
 // 연관 값을 갖는 열거형의 항목 순회
 enum PastaTaste: CaseIterable {
     case cream, tomato
