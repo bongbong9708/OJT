@@ -23,8 +23,15 @@ OJT 교육일지
   - [Tuple](https://github.com/bongbong9708/OJT#4-tuple)
 - [Swift 기초 2 (Collection Types)](https://github.com/bongbong9708/OJT/blob/main/README.md#swift-%EA%B8%B0%EC%B4%88-2-collection-types)
   - [배열(Array)](https://github.com/bongbong9708/OJT/blob/main/README.md#1-%EB%B0%B0%EC%97%B4array)
+    - [맵(Map)]()
+    - [필터(Filter)]()
+    - [리듀스(Reduce)]()
   - [Dictionary](https://github.com/bongbong9708/OJT/blob/main/README.md#2-dictionary)
   - [Set](https://github.com/bongbong9708/OJT/blob/main/README.md#3-set)
+- [Swift 기초 3]()
+  - [열거형]()
+  - [연산자]()
+  - [접근제어]()
 
 ## iOS 라이프 사이클
 
@@ -595,6 +602,143 @@ for (num,name) in names.enumerated() {
 
 ```
 
+#### Map
+--------
+맵(Map)은 자신을 호출할 때 매개변수로 전달된 함수를 실행하여 그 결과를 다시 반환해주는 함수입니다.
+- 스위프트의 Sequence, Collection 프로토콜을 따르는 타입과 옵셔널은 모두 맵을 사용할 수 있습니다.(배열, 딕셔너리, 세트, 옵셔널 등)
+- 맵은 기존 데이터를 변형하는데 많이 사용합니다.
+- for-in 구문과 큰 차이는 없지만, map 사용시 이점이 있습니다.
+  - 코드의 간결성
+  - 재사용 용이
+  - 컴파일러 최적화 성능 좋음
+``` swift
+// map의 기본 형태
+array.map(transform: T throws -> T)
+```
+``` swift
+let numbers: [Int] = [0, 1, 2, 3, 4]
+
+var doubleNumbers: [Int] = [Int]()
+
+// for-in 구문 사용
+for number in numbers {
+  doubleNumbers.append(number*2)
+}
+
+print(doubleNumbers)    // [0, 2, 4, 6, 8]
+```
+``` swift
+// map 메서드 사용
+doubleNumbers = numbers.map { $0 * 2 }
+
+print(doubleNumbers)    // [0, 2, 4, 6, 8]
+```
+``` swift
+// 위와 같은 표현
+doubleNumbers = numbers.map({ (number: Int) -> Int in
+  return number * 2
+})
+
+// 매개변수 및 반환 타입 생략
+doubleNumbers = numbers.map ({ return $0 * 2 })
+
+// 반환 키워드 생략
+doubleNumbers = numbers.map ({ $0 * 2 })
+```
+#### Filter
+--------
+필터는 컨테이너 내부의 값을 걸러서 추출하는 역할을 하는 고차함수입니다.
+- 새로운 컨테이너 값을 담아 반환해주지만 기존 콘텐츠를 변형하는 것이 아니라, 특정 조건에 맞게 걸러내는 역할을 합니다.
+``` swift
+// filter의 기본 형태
+array.filter(isIncluded: T throws - > T)
+```
+``` swift
+// filter 메서드 사용
+let numbers: [Int] = [0, 1, 2, 3, 4, 5]
+
+let evenNumbers: [Int] = numbers.filter { (number: Int) -> Bool in
+  return number % 2 == 0
+}
+
+print(evenNumbers)    // [0, 2, 4]
+
+let oddNumbers: [Int] = numbers.filter{ $0 % 2 == 1 }
+print(oddNumbers)   // [1, 3, 5]
+```
+``` swift
+// map과 filter 메서드의 연계 사용
+let numbers: [Int] = [0, 1, 2, 3, 4, 5]
+
+let mappedNumbers: [Int] = numbers.map{ $0 + 3 }
+
+let evenNumbers: [Int] = mappedNumbers.filter { (number: Int) -> Bool in
+  return number % 2 == 0
+}
+
+print(evenNumbers)    // [4, 6, 8]
+
+// 메서드를 체인처럼 연결하여 사용할 수 있습니다.
+let oddNumbers: [Int] = numbers.map{ $0 + 3}.filter{ $0 % 2 == 1 }
+print(oddNumbers)   // [3, 5, 7]
+
+```
+#### Reduce
+--------
+리듀스는 컨테이너 내부의 콘텐츠를 하나로 합하는 기능을 실행하는 고차함수입니다.
+- 기존 컨테이너에서 내부의 값들을 결합하여 새로운 값을 만듭니다.
+``` swift
+// reduce의 기본 형태 1 - 클로저가 각 요소를 전달받아 연산한 후 값을 다음 클로저 실행을 위해 반환하며 컨테이너를 순환하는 형태입니다.
+public func reduce<Result>(_ initialResult: Result,
+  _ nextPartialResult: (Result, Element) throws -> Result ) rethrows -> Result
+
+// reduce의 기본 형태 2 - 컨테이너를 순환하며 클로저가 실행되지만 클로저가 따로 결괏값을 반환하지 않는 형태
+public func reduce<Result>(into initialResult: Result, _ updateAccumulatingResult: (inout Result, Element) 
+  throws -> ()) rethrows -> Result
+```
+``` swift
+// reduce 메서드 사용
+let numberArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+let sum = numberArray.reduce(0){ $0 + $1 }
+print(sum)    // 55
+
+let sum = numberArray.reduce(0, {(first: Int, second: Int) -> Int in
+  return first + second
+})
+print(sum)    // 55
+```
+``` swift
+// 맵, 필터, 리듀스의 활용
+enum Gender {
+  case male, female, unknown
+}
+
+struct Friend {
+  let name: String
+  let gender: Gender
+  let location: String
+  var age: UInt
+}
+
+var friends: [Friend] = [Friend]()
+
+friends.append(Friend(name: "sangbong", gender: .male, location: "천안", age: 25))
+friends.append(Friend(name: "chulsoo", gender: .male, location: "서울", age: 30))
+friends.append(Friend(name: "yunghee", gender: .female, location: "부산", age: 30))
+friends.append(Friend(name: "elsa", gender: .female, location: "인천", age: 25))
+
+var result: [Friend] = friends.map{ Friend(name: $0.name, gender: $0.gender, location: $0.location, age: $0.age) }
+
+result = result.filter{ $0.location != "서울" && $0.age >= 26 }
+
+let string: String = result.reduce("서울 외의 지역에 거주하며 26세 이상인 친구") {
+    $0 + "\n" + "\($1.name) \($1.gender) \($1.location) \($1.age)세"
+}
+
+print(string)
+// 서울 외의 지역에 거주하며 26세 이상인 친구
+// yunghee female 부산 30세
+```
 ### 2. Dictionary
 딕셔너리는 요소들이 순서 없이 Key와 Value의 쌍으로 구성되는 컬렉션 타입입니다.
 - 딕셔너리에 저장되는 값은 항상 키와 쌍을 이루고 있다.
@@ -664,5 +808,287 @@ print(unionSet.sorted())
 [Collection Types](https://xodhks0113.blogspot.com/2019/05/swift-collection-type-array-dictionary.html)
 
 [애플 공식 문서 한글 번역](https://jusung.gitbook.io/the-swift-language-guide/language-guide/04-collection-types)
+
+야곰, 스위프트 프로그래밍 3판 SWIFT5, 한빛미디어
+
+[고차함수-Map,Filter,Reduce 알아보기](https://shark-sea.kr/entry/Swift-%EA%B3%A0%EC%B0%A8%ED%95%A8%EC%88%98-Map-Filter-Reduce-%EC%95%8C%EC%95%84%EB%B3%B4%EA%B8%B0)
+
+-----------------------------------------------------------------------
+## Swift 기초 3
+
+### 1. 열거형
+열거형은 연관된 항목들을 묶어서 표현할 수 있는 타입입니다. 열거형은 배열이나 딕셔너리 같은 타입과 다르게 프로그래머가 정의해준 항목 값 외에는 추가/수정이 불가합니다.
+- 기본 열거형
+``` swift
+enum CompassPoint {
+  case north    
+  case south        
+  case east         
+  case west
+}
+
+// 위와 같은 표현 - 각각이 아닌 한번에 나열
+enum CompassPoint {
+  case north, south, east, west
+}
+
+// 열거형 변수의 생성 및 값 변경
+var moveCompassPoint: CompassPoint = CompassPoint.south
+
+// 위와 같은 표현
+var moveCompassPoint: CompassPoint = .south
+
+// 같은 타입인 CompassPoint 내부의 항목으로만 moveCompassPoint의 값을 변경해줄 수 있습니다.
+moveCompassPoint = .west
+```
+- 원시 값
+  - 특정 타입의 값을 원시 값으로 가지고 싶다면 열거형 이름 오른쪽에 타입을 명시해 주면 됩니다.
+  - 원시 값을 사용하고 싶다면 rawValue라는 프로퍼티를 통해 가져올 수 있습니다.
+``` swift
+enum CompassPoint: String {
+  case east = "동"
+  case west = "서"
+  case south = "남"
+  case north = "북"
+}
+
+let myHomeCompassPoint: CompassPoint = CompassPoint.south
+print("우리 집은 \(myHomeCompassPoint.rawValue)쪽에 있습니다.")
+// 우리 집은 남쪽에 있습니다.
+
+enum WeekDays: Character {
+  case mon = "월", tue = "화", wed = "수", thu = "목", fri = "금", sat = "토", sun = "일"
+}
+let today: WeekDays = WeekDays.fri
+print("\(today.rawValue)요일 좋아~")  // 금요일 좋아~
+```
+``` swift
+// 열거형의 원시 값 일부 지정 및 자동 처리
+enum CompassPoint: String {
+  case east = "동"
+  case west
+  case south = "남"
+  case north = "북"
+}
+
+let myHomeCompassPoint: CompassPoint = CompassPoint.west
+print("우리 집은 \(myHomeCompassPoint.rawValue)쪽에 있습니다.")   // 우리 집은 west쪽에 있습니다.
+
+enum Numbers: Int {
+  case zero
+  case one
+  case two
+  case ten = 10
+}
+print("\(Numbers.zero.rawValue), \(Numbers.one.rawValue), \(Numbers.two.rawValue), \(Numbers.ten.rawValue)")   
+// 0, 1, 2, 10
+```
+- 연관 값
+  - 열거형 내의 항목(case)이 자신과 연관된 값을 가질 수 있습니다. 
+  - 연관 값은 각 항목 옆에 소괄호로 묶어 표현할 수 있습니다. 
+  - 다른 항목이 연관 값을 갖는다고 모든 항목이 연관 값을 가질 필요는 없습니다.
+``` swift
+// 연관 값을 갖는 열거형 응용 - Switch문 사용
+enum PastaTaste {
+    case cream, tomato
+}
+
+enum PizzaDough {
+    case cheeseCrust, thin, original
+}
+
+enum PizzaTopping {
+    case pepperoni, cheese, bacon
+}
+
+enum MainDish {
+  case pasta(taste: PastaTaste)
+  case pizza(dough: PizzaDough, topping: PizzaTopping)
+  case chicken(withSource: Bool)
+  case rice
+}
+
+extension MainDish {
+    func printMainDish() {
+        switch mainDish {
+        case .pasta(taste: let taste):
+            print("\(taste) pasta")
+        case .pizza(dough: let dough, topping: let topping):
+            print("\(dough) dough + \(topping) topping pizza")
+        case .chicken(withSource: let withSource):
+            print("\(withSource) chicken")
+        case .rice :
+            print("밥추가")
+            break
+        }
+    }
+}
+
+var mainDish: MainDish = MainDish.pizza(dough: .cheeseCrust, topping: .pepperoni)
+// 연관 값을 출력합니다.
+mainDish.printMainDish()    // cheeseCrust dough + pepperoni topping pizza
+```
+- 항목 순회
+  - 열거형의 포함된 모든 케이스를 알아야 할 때 CaseIterable 프로토콜을 채택합니다.
+  - 그러면 열거형에 allCases라는 타입프로퍼티를 통해 모든 케이스의 컬렉션을 생성해 줍니다.
+``` swift
+// CaseIterable 프로토콜과 원시값을 갖는 열거형의 항목 순회
+enum School: String, CaseIterable {
+    case primary = "유치원"
+    case elementary = "초등학교"
+    case middel = "중학교"
+    case high = "고등학교"
+    case college = "대학"
+    case university = "대학교"
+    case graduate = "대학원"
+}
+
+let allCases: [School] = School.allCases
+print(allCases)
+// [School.primary, School.elementary, School.middel, School.high, School.college, School.university, School.graduate]
+```
+  - 특정 케이스를 플랫폼에 따라 사용할 수 있거나 없는 경우가 생기면 CaseIterable 프로토콜을 채택하는 것만으로는 allCases 프로퍼티를 사용할 수 없습니다.
+  - 이럴 때는 allCases 프로터리를 구현해 주어야 합니다.
+``` swift
+// 플랫폼별로 사용 조건을 추가하는 경우
+enum School: String, CaseIterable {
+    case primary = "유치원"
+    case elementary = "초등학교"
+    case middle = "중학교"
+    case high = "고등학교"
+    case college = "대학"
+    case university = "대학교"
+    @available(iOS, obsoleted: 12.0)
+    case graduate = "대학원"
+    
+    static var allCases: [School] {
+        let all: [School] = [ .primary,
+                              .elementary,
+                              .middle,
+                              .high,
+                              .college,
+                              .university]
+        #if os(iOS)
+        return all
+        #else
+        return all + [.graduate]
+        #endif
+    }
+}
+
+let allCases: [School] = School.allCases
+print(allCases)
+// 실행환경에 따라 다른 결과
+// [School.primary, School.elementary, School.middel, School.high, School.college, School.university, School.graduate]
+
+// 연관 값을 갖는 열거형의 항목 순회
+enum PastaTaste: CaseIterable {
+    case cream, tomato
+}
+
+enum PizzaDough: CaseIterable {
+    case cheeseCrust, thin, original
+}
+
+enum PizzaTopping: CaseIterable {
+    case pepperoni, cheese, bacon
+}
+
+enum MainDish: CaseIterable {
+    case pasta(taste: PastaTaste)
+    case pizza(dough: PizzaDough, topping: PizzaTopping)
+    case chicken(withSource: Bool)
+    case rice
+
+    static var allCases: [MainDish] {
+        return PastaTaste.allCases.map(MainDish.pasta)
+        + PizzaDough.allCases.reduce([]) { (result, dough) -> [MainDish] in
+            result + PizzaTopping.allCases.map{ (topping) -> MainDish in
+                MainDish.pizza(dough: dough, topping: topping)
+            }
+        }
+        + [true, false].map(MainDish.chicken)
+        + [MainDish.rice]
+    }
+}
+
+print(MainDish.allCases.count)      // 14
+print(MainDish.allCases)    // 모든 경우의 연관 값을 갖는 케이스 컬렉션
+```
+- 순환 열거형
+  - 열거형 항목의 연관 값이 열거형 자신의 값이고자 할 때 사용합니다.
+  - 순환 열거형을 명시하고 싶다면 indirect, 특정 항목에만 한정하고 싶으면 case 키워드 앞에 indirect, 열거형 전체에 적용하고 싶다면 enum 키워드 앞에 indirect 키워드를 붙이면 됩니다.
+``` swift
+// 순환 열거형의 사용
+let five = ArithmeticExpression.number(5)
+let four = ArithmeticExpression.number(4)
+let sum = ArithmeticExpression.addition(five, four)
+let final = ArithmeticExpression.multiplication(sum, ArithmeticExpression.number(2))
+
+func evaluate(_ expression: ArithmeticExpression) -> Int {
+    switch expression {
+    case .number(let value):
+        return value
+    case .addition(let left, let right):
+        return evaluate(left) + evaluate(right)
+    case .multiplication(let left, let right):
+        return evaluate(left) * evaluate(right)
+    }
+}
+
+let result: Int = evaluate(final)
+print("(5 + 4) * 2 = \(result)")    // (5 + 4) * 2 = 18
+```
+- 비교 가능한 열거형
+  - Comparable 프로토콜을 준수하는 연관 값만 갖거나 연관 값이 없는 열거형은 Comparable 프로토콜을 채택하면 각 케이스를 비교할 수 있습니다. 
+  - 앞에 위치한 케이스가 더 작은 값이 됩니다.
+``` swift
+enum Condition: Comparable {
+    case terrible
+    case bad
+    case good
+    case great
+}
+
+let myCondition: Condition = Condition.great
+let yourCondition: Condition = Condition.bad
+
+if myCondition >= yourCondition {
+    print("제 상태가 더 좋군요")
+} else {
+    print("당신의 상태가 더 좋아요")
+}
+// 제 상태가 더 좋군요
+
+enum Device: Comparable {
+    case iPhone(version: String)
+    case iPad(version: String)
+    case macBook
+    case iMac
+}
+
+var devices: [Device] = []
+devices.append(Device.iMac)
+devices.append(Device.iPhone(version: "14.3"))
+devices.append(Device.iPhone(version: "6.1"))
+devices.append(Device.iPad(version: "10.3"))
+devices.append(Device.macBook)
+
+let sortedDevices: [Device] = devices.sorted()
+print(sortedDevices)
+// [Device.iPhone(version: "14.3"), Device.iPhone(version: "6.1"), Device.iPad(version: "10.3"), Device.macBook, Device.iMac]
+```
+### 2. 연산자
+``` swift
+```
+### 3. 접근제어
+``` swift
+```
+
+[Reference]
+-
+[열거형](https://xodhks0113.blogspot.com/2019/07/swift.html)
+
+[애플 공식 문서 한글 번역](https://jusung.gitbook.io/the-swift-language-guide/language-guide/08-enumerations)
 
 야곰, 스위프트 프로그래밍 3판 SWIFT5, 한빛미디어
