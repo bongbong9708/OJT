@@ -30,11 +30,11 @@ OJT 교육일지
   - [Set](https://github.com/bongbong9708/OJT/blob/main/README.md#3-set)
 - [Swift 기초 3](https://github.com/bongbong9708/OJT#swift-%EA%B8%B0%EC%B4%88-3)
   - [열거형](https://github.com/bongbong9708/OJT#1-%EC%97%B4%EA%B1%B0%ED%98%95)
-  - [연산자]
-  - [접근제어]
-- [Swift 기초 4] 
-  - [Optionals] 
-  - [Guard]
+  - [연산자](https://github.com/bongbong9708/OJT#2-%EC%97%B0%EC%82%B0%EC%9E%90)
+  - [접근제어](https://github.com/bongbong9708/OJT#3-%EC%A0%91%EA%B7%BC%EC%A0%9C%EC%96%B4)
+- [Swift 기초 4](https://github.com/bongbong9708/OJT#swift-%EA%B8%B0%EC%B4%88-4)
+  - [Optionals]-(https://github.com/bongbong9708/OJT#1-optionals) 
+  - [Guard]-(https://github.com/bongbong9708/OJT#2-guard)
   
 ## iOS 라이프 사이클
 
