@@ -33,8 +33,8 @@ OJT 교육일지
   - [연산자](https://github.com/bongbong9708/OJT#2-%EC%97%B0%EC%82%B0%EC%9E%90)
   - [접근제어](https://github.com/bongbong9708/OJT#3-%EC%A0%91%EA%B7%BC%EC%A0%9C%EC%96%B4)
 - [Swift 기초 4](https://github.com/bongbong9708/OJT#swift-%EA%B8%B0%EC%B4%88-4)
-  - [Optionals]-(https://github.com/bongbong9708/OJT#1-optionals) 
-  - [Guard]-(https://github.com/bongbong9708/OJT#2-guard)
+  - [Optionals](https://github.com/bongbong9708/OJT#1-optionals) 
+  - [Guard](https://github.com/bongbong9708/OJT#2-guard)
   
 ## iOS 라이프 사이클
 
@@ -1236,5 +1236,134 @@ print(sortedDevices)
 ## Swift 기초 4
 
 ### 1. Optionals
+옵셔널은 스위프트의 특징 중 하나인 안전성을 문법을 담보하는 기능이다. 옵셔널은 단어 뜻 그대로 '선택적인', 즉 값이 '있을 수도, 없을 수도 있음'을 나타내는 표현입니다. 즉, 변수 또는 상수의 값이 nil일 수도 있다는 것을 의미합니다.
+- 변수 또는 상수에 정말 값이 없을 때만 nil로 표현합니다.
+``` Swift
+var myName: String? = "sangbong"
+print(myName)   // Optional("sangbong")
 
+myName = nil
+print(myName)   // nil
+```
+- 옵셔널 강제추출
+  - 옵셔널의 값을 추출하는 가장 간단하지만 가장 위험한 방법입니다.(런타임 오류가 일어날 가능성이 가장 높기 때문입니다.!)
+  - 강제 추출 시 옵셔널에 값이 없다면, 즉 nil이라면 런타임 오류가 발생합니다.
+``` swift
+var myName: String? = "sangbong"
+print(myName)       // Optional("sangbong")
+print(myName!)      // sangbong
+
+myName = nil
+
+// if 구문 등 조건문을 이용해서 조금 더 안전하게 처리할 수 있습니다.
+if myName != nil {
+    print("My name is \(myName!)")
+} else {
+    print("myName == nil")
+}
+// myName == nil
+```
+- 옵셔널 바인딩
+    - 옵셔널에 값이 있는지 확인할 때 사용합니다.
+    - 만약 옵셔널에 값이 있다면 옵셔널에서 추출한 값을 일정 블록 안에서 사용할 수 있는 상수나 변수로 할당해서 옵셔널이 아닌 형태로 사용할 수 있도록 해줍니다.
+    - if 또는 while 구문 등과 결합하여 사용합니다.
+``` swift
+var myAge: Int? = 25
+var yourAge: Int? = nil
+
+if let age = myAge, let friend = yourAge {
+    print("We are friend! \(age) & \(friend)")
+} else {
+    print("Age == nil")
+}
+// Age == nil
+```
+- 암시적 추출 옵셔널
+  - 암시적 추출 옵셔널을 사용하려면 타입 뒤에 느낌표를 사용해주면 됩니다.
+  - 암시적 추출 옵셔널로 지정된 타입은 일반 값처럼 사용할 수 있으나, 여전히 옵셔널이기 떄문에 nil도 할당해줄 수 있습니다.
+  - 그러나 nil이 할당되어 있을 때 접근을 시도하면 런타임 오류가 발생합니다.
+``` swift
+var myHeight: Int! = 179
+print(myHeight)     // Optional(179)
+myHeight = nil
+
+if let height = myHeight {
+    print("My height is \(height)")
+} else {
+    print("myHeight == nil")
+}
+
+//  myHeight.isEmpty - 오류 발생
+```
 ### 2. Guard
+guard 구문은 if 구문과 유사하게 Bool 타입의 값으로 동작하는 기능입니다. 
+- guard 뒤에 따라붙는 코드의 실행 결과가 true일 때 코드가 계속 실행됩니다.
+- guard 뒤에 따라오는 Bool 값이 false라면 else의 블록 내부 코드를 실행하게 되는데, 이때 else 구문의 블록 내부에는 꼭 자신보다 상위의 코드 블록을 종료하는 코드가 들어가게 됩니다.(retrun, break, continue, throw 등 제어문 전환 명령 또는 fatalError()와 같은 비반환 함수나 메서드 호출)
+``` swift
+guard Bool 타입 값 else {
+  예외사항 실행문
+  제어문 전환 명령어
+}
+```
+- guard 구문을 사용하면 if 코드를 훨씬 간결하고 읽기 좋게 구성할 수 있습니다.
+``` swift
+/ if 구문을 사용한 코드
+for i in 0...3 {
+    if i == 2 {
+        print(i)
+    } else {
+        continue
+    }
+}
+
+// guard 구문을 사용한 코드
+for i in 0...3 {
+    guard i == 2 else {
+        continue
+    }
+    print(i)
+}
+```
+- guard 구문은 옵셔널 바인딩의 역할도 할 수 있습니다.
+- guard 뒤에 따라오는 옵셔널 바인딩 표현에서 옵셔널의 값이 있는 상태라면 guard 구문에서 옵셔널 바인딩된 상수를 guard 구문이 실행된 아래 코드부터 함수 내부의 지역상수처럼 사용할 수 있습니다.
+``` swift
+// guard 구문의 옵셔널 바인딩 활용
+func greet(_ person: [String: String]) {
+    guard let name: String = person["name"] else {
+        return
+    }
+    print("Hello \(name)!")
+    
+    guard let location: String = person["location"] else {
+        print("I hope the weather is nice near you")
+        return
+    }
+
+    print("I hope the weather is nice in \(location)")
+}
+
+var personInfo: [String: String] = [String: String]()
+personInfo["name"] = "elsa"
+
+greet(personInfo)
+// Hello elsa!
+// I hope the weather is nice near you
+
+personInfo["location"] = "Korea"
+
+greet(personInfo)
+// Hello elsa!
+// I hope the weather is nice in Korea
+
+
+```
+
+[Reference]
+-
+
+[옵셔널](https://xodhks0113.blogspot.com/2019/07/swift-optionals.html)
+[Guard](https://xodhks0113.blogspot.com/2019/10/swift-guard.html)
+
+야곰, 스위프트 프로그래밍 3판 SWIFT5, 한빛미디어
+
+-----------------------------------------------------------------------
