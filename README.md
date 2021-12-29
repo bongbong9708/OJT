@@ -35,10 +35,10 @@ OJT 교육일지
 - [Swift 기초 4](https://github.com/bongbong9708/OJT#swift-%EA%B8%B0%EC%B4%88-4)
   - [Optionals](https://github.com/bongbong9708/OJT#1-optionals) 
   - [Guard](https://github.com/bongbong9708/OJT#2-guard)
-- [Swift 기초 5]
-  - 구조체
-  - 클래스
-  - 구조체 vs 클래스
+- [Swift 기초 5](https://github.com/bongbong9708/OJT/blob/main/README.md#swift-%EA%B8%B0%EC%B4%88-5)
+  - [구조체](https://github.com/bongbong9708/OJT/blob/main/README.md#1-%EA%B5%AC%EC%A1%B0%EC%B2%B4)
+  - [클래스](https://github.com/bongbong9708/OJT/blob/main/README.md#2-%ED%81%B4%EB%9E%98%EC%8A%A4)
+  - [구조체 vs 클래스](https://github.com/bongbong9708/OJT/blob/main/README.md#3-%EA%B5%AC%EC%A1%B0%EC%B2%B4-vs-%ED%81%B4%EB%9E%98%EC%8A%A4)
 
 ## iOS 라이프 사이클
 
