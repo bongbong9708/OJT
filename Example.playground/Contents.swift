@@ -577,3 +577,125 @@ personInfo["location"] = "Korea"
 greet(personInfo)
 // Hello elsa!
 // I hope the weather is nice in Korea
+
+
+
+
+
+// MARK: - 구조체
+
+// 구조체 정의
+struct BasicInformation {
+    var name: String
+    var age: Int
+}
+
+// 프로퍼티 이름으로 자동 생성된 이니셜라이저를 사용하여 구조체 생성
+var mobileInfo: BasicInformation = BasicInformation(name: "sangbong", age: 25)
+print("\(mobileInfo.name)는 \(mobileInfo.age)살입니다. ")
+
+mobileInfo.name = "galio"
+mobileInfo.age = 100
+
+print("\(mobileInfo.name)는 \(mobileInfo.age)살입니다. ")
+
+// 상수 let으로 선언하면 인스턴스 내부의 값을 변경할 수 없다.
+
+
+
+
+// MARK: - 클래스
+
+// 클래스 정의
+// 클래스는 상속을 받을 수 있어 상속을 받을 때는 클래스 이름 뒤어 콜론(:)을 써주고 부모클래스 이름을 명시
+class Person {
+    var height: Float = 0.0
+    var weight: Float = 0.0
+}
+
+class PersonAdult: Person {
+    var name: String = ""
+    var age: Int = 0
+}
+// 클래스를 정의한 후, 인스턴스를 생성하고 초기화하자고 할때는 기본적인 이니셜라이저를 사용
+// Person 클래스에서는 프로퍼티 기본값이 지정되어 있으므로 전달인자를 통해 따로 초깃값을 전달해주지 않아도 됌
+
+
+// 클래스의 인스턴스 생성 및 사용
+var sangbong: PersonAdult = PersonAdult()
+sangbong.height = 123.45
+sangbong.weight = 123.45
+sangbong.name = "sangbong"
+sangbong.age = 25
+
+print(sangbong.height)
+
+var jenny: Person = Person()
+jenny.weight = 234.56
+//jenny.name = "jenny"      // 에러 발생
+
+
+// 클래스 인스턴스의 생성 및 소멸
+class PersonDeinit {
+    var height: Float = 0.0
+    var weight: Float = 0.0
+    
+    deinit {
+        print("PersonDeinit 클래스의 인스턴스가 소멸")
+    }
+}
+
+var yagom: PersonDeinit? = PersonDeinit()
+yagom = nil     // nil
+
+// 값 타입과 참조 타입의 차이
+// 값 타입
+struct BasicInfo {
+    let name: String
+    var age: Int
+}
+
+var bongInfo: BasicInfo = BasicInfo(name: "sangbong", age: 25)
+bongInfo.age = 100
+
+// bongInfo의 값을 복사하여 할당
+var galioInfo: BasicInfo = bongInfo
+
+print("bong's age: \(bongInfo.age)")        // bong's age: 100
+print("galio's age: \(galioInfo.age)")      // galio's age: 100
+
+galioInfo.age = 999
+
+print("bong's age: \(bongInfo.age)")        // bong's age: 100
+print("galio's age: \(galioInfo.age)")      // galio's age: 999
+// galioInfo는 bongInfo의 값을 복사해왔기 때문에 별개의 값을 갖는다.
+
+
+// 참조타입
+class People {
+    var height: Float = 0.0
+    var weight: Float = 0.0
+}
+
+var bongbong: People = People()
+var gagalgang: People = bongbong
+// bongbong의 참조를 할당합니다.
+
+print("bongbong's weight: \(bongbong.weight)")      // bongbong's weight: 0.0
+print("gagalgang's weight: \(gagalgang.weight)")        // gagalgang's weight: 0.0
+
+gagalgang.weight = 123.4
+print("bongbong's weight: \(bongbong.weight)")      // bongbong's weight: 123.4
+// gagalgang은 bongbong을 참조하기 때문에 값이 변동됩니다.
+
+print("gagalgang's weight: \(gagalgang.weight)")        // gagalgang's weight: 123.4
+// 이를 통해 bongbong이 참조하는 곳과 gagalgang이 참조하는 곳이 같음을 알 수 있습니다.
+
+
+//var bongbong: People = People()
+let garen: People = bongbong        // bongbong의 참조를 할당
+let darius: People = People()       // 새로운 인스턴스를 생성합니다.
+
+print(bongbong === garen)       // true
+print(bongbong === darius)      // false
+print(garen !== darius)         // true
