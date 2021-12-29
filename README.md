@@ -35,7 +35,11 @@ OJT 교육일지
 - [Swift 기초 4](https://github.com/bongbong9708/OJT#swift-%EA%B8%B0%EC%B4%88-4)
   - [Optionals](https://github.com/bongbong9708/OJT#1-optionals) 
   - [Guard](https://github.com/bongbong9708/OJT#2-guard)
-  
+- [Swift 기초 5]
+  - 구조체
+  - 클래스
+  - 구조체 vs 클래스
+
 ## iOS 라이프 사이클
 
 ### 1. 앱 생명주기(APP Lifecycle)
@@ -1366,4 +1370,186 @@ greet(personInfo)
 
 야곰, 스위프트 프로그래밍 3판 SWIFT5, 한빛미디어
 
------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------
+## Swift 기초 5
+
+### 1. 구조체
+- struct 키워드로 정의
+``` swift
+// 구조체 정의
+struct BasicInformation {
+    var name: String
+    var age: Int
+}
+```
+- 프로퍼티 이름으로 자동 생성된 이니셜라이저를 사용하여 구조체를 생성합니다.
+``` swift
+// 구조체의 인스턴스 생성 및 사용
+var mobileInfo: BasicInformation = BasicInformation(name: "sangbong", age: 25)
+print("\(mobileInfo.name)는 \(mobileInfo.age)살입니다. ")    // sangbong는 25살입니다. 
+
+mobileInfo.name = "galio"
+mobileInfo.age = 100
+
+print("\(mobileInfo.name)는 \(mobileInfo.age)살입니다. ")    // galio는 100살입니다. 
+// 상수 let으로 선언하면 인스턴스 내부의 값을 변경할 수 없다.
+```
+### 2. 클래스
+- class 키워드로 정의
+``` swift
+// 클래스 정의
+class Person {
+    var height: Float = 0.0
+    var weight: Float = 0.0
+}
+
+// 클래스는 상속을 받을 수 있어 상속을 받을 때는 클래스 이름 뒤어 콜론(:)을 써주고 부모클래스 이름을 명시
+class PersonAdult: Person {
+    var name: String = ""
+    var age: Int = 0
+}
+```
+- 클래스를 정의한 후, 인스턴스를 생성하고 초기화하자고 할때는 기본적인 이니셜라이저를 사용
+- Person 클래스에서는 프로퍼티 기본값이 지정되어 있으므로 전달인자를 통해 따로 초깃값을 전달해주지 않아도 됌
+``` swift
+// 클래스의 인스턴스 생성 및 사용
+var sangbong: PersonAdult = PersonAdult()
+sangbong.height = 123.45
+sangbong.weight = 123.45
+sangbong.name = "sangbong"
+sangbong.age = 25
+
+print(sangbong.height)    // 123.45
+
+var jenny: Person = Person()
+jenny.weight = 234.56
+// jenny.name = "jenny"      // 에러 발생
+```
+- 클래스의 인스턴스는 참조 타입이므로 더는 참조할 필요가 없을때 메모리에서 해제됩니다.(소멸)
+- 소멸되기 직전 deinit라는 메서드가 호출됩니다.
+
+  - 디이니셜라이저는 클래스당 하나만 구현할 수 있습니다
+  - 매개변수와 반환 값을 가질 수 없습니다.
+  - 매개변수를 위한 소괄호도 적어주지 않습니다.
+``` swift
+// 클래스 인스턴스의 생성 및 소멸
+class PersonDeinit {
+    var height: Float = 0.0
+    var weight: Float = 0.0
+    
+    deinit {
+        print("PersonDeinit 클래스의 인스턴스가 소멸")   // ersonDeinit 클래스의 인스턴스가 소멸
+    }
+}
+
+var yagom: PersonDeinit? = PersonDeinit()
+yagom = nil     // nil
+```
+### 3. 구조체 vs 클래스
+구조체와 클래스의 같은 점
+
+> 값을 저장하기 위해 프로퍼티를 정의할 수 있습니다. 
+> 
+> 기능 실행을 위해 메서드를 정의할 수 있습니다. 
+> 
+> 서브스크립트 문법을 통해 구조체 또는 클래스가 갖는 값(프로퍼티)에 접근하도록 서브스크립트를 정의할 수 있습니다.
+> 
+> 초기화될 때의 상태를 지정하기 위해 이니셜라아저를 정의할 수 있습니다.
+> 
+> 초기구현과 더불어 새로운 기능 추가를 위해 익스텐션을 통해 확장할 수 있습니다.
+> 
+> 특정기능을 실행하기 위해 특정 프로토콜을 준수할 수 있습니다.
+
+구조체와 클래스의 다른 점
+
+> 구조체는 상속할 수 없습니다.
+> 
+> 타입캐스팅은 클래스의 인스턴스에만 허용됩니다.
+> 
+> 디이니셜라이저는 클래스의 인스턴스에만 활용할 수 있습니다.
+> 
+> 참조 횟수 계산은 클래스의 인스턴스에만 적용됩니다.
+
+- 값 타입과 참조 타입
+
+  - 구조체는 값 타입이고, 클래스는 참조 타입이다.
+  - 전달인자로 값을 넘긴다면 값 타입은 전달되는 값이 복사되고, 참조 타입은 참조(주소)가 전달 됩니다.
+``` swift
+// 값 타입
+struct BasicInfo {
+    let name: String
+    var age: Int
+}
+
+var bongInfo: BasicInfo = BasicInfo(name: "sangbong", age: 25)
+bongInfo.age = 100
+
+// bongInfo의 값을 복사하여 할당
+var galioInfo: BasicInfo = bongInfo
+
+print("bong's age: \(bongInfo.age)")        // bong's age: 100
+print("galio's age: \(galioInfo.age)")      // galio's age: 100
+
+galioInfo.age = 999
+
+print("bong's age: \(bongInfo.age)")        // bong's age: 100
+print("galio's age: \(galioInfo.age)")      // galio's age: 999
+// galioInfo는 bongInfo의 값을 복사해왔기 때문에 별개의 값을 갖는다.
+```
+``` swift
+// 참조타입
+class People {
+    var height: Float = 0.0
+    var weight: Float = 0.0
+}
+
+var bongbong: People = People()
+var gagalgang: People = bongbong
+// bongbong의 참조를 할당합니다.
+
+print("bongbong's weight: \(bongbong.weight)")      // bongbong's weight: 0.0
+print("gagalgang's weight: \(gagalgang.weight)")        // gagalgang's weight: 0.0
+
+gagalgang.weight = 123.4
+print("bongbong's weight: \(bongbong.weight)")      // bongbong's weight: 123.4
+// gagalgang은 bongbong을 참조하기 때문에 값이 변동됩니다.
+
+print("gagalgang's weight: \(gagalgang.weight)")        // gagalgang's weight: 123.4
+// 이를 통해 bongbong이 참조하는 곳과 gagalgang이 참조하는 곳이 같음을 알 수 있습니다.
+```
+- 클래스의 식별 연산자
+
+  - 클래스의 인스턴스끼리 참조가 같은지 확인할 때는 식별 연산자를 사용합니다.
+  - 두 참조가 같은 인스턴스를 가리키고 있는지 비교해보는 코드입니다.
+``` swift
+var bongbong: People = People()
+let garen: People = bongbong        // bongbong의 참조를 할당
+let darius: People = People()       // 새로운 인스턴스를 생성합니다.
+
+print(bongbong === garen)       // true
+print(bongbong === darius)      // false
+print(garen !== darius)         // true
+```
+- 구조체와 클래스 선택해서 사용하기
+  - [애플 가이드라인](https://developer.apple.com/documentation/swift/choosing_between_structures_and_classes)
+    - 기본적으로 구조체 선택합니다.
+    - Objective-C 상호 운용성이 필요할 때 클래스를 사용합니다.
+    - ID를 제어해야할 때 클래스를 사용합니다.
+    - ID를 제어하지 못할 때 구조체를 사용합니다.
+    - 프로토콜과 함께 구조체를 사용하여 구현을 공유하여 동작을 구현하십시오.
+
+  - 일반적으로 다음 조건 중 1개 이상을 만족하면 구조체를 사용하는 것을 고려해 볼 수 있습니다.
+    - 연관된 간단한 값이 집합을 캡슐화하는 것만이 목적일 때
+    - 캡슐화한 값을 참조하는 것보다 복사하는 것이 합당할 때
+    - 구조체에 저장된 프로퍼티가 값 타입이며 참조하는 것보다 복사하는 것이 합당할 때
+    - 다른 타입으로부터 상속받거나 자신을 상속할 필요가 없을 때
+
+[Reference]
+-
+[구조체 vs 클래스](https://xodhks0113.blogspot.com/2019/09/swift-vs-struct-vs-class.html)
+
+[애플 가이드라인](https://developer.apple.com/documentation/swift/choosing_between_structures_and_classes)
+
+야곰, 스위프트 프로그래밍 3판 SWIFT5, 한빛미디어 - 9장 구조체와 클래스
+
+----------------------------------------------------------------------------------------------------------------------------------------------
