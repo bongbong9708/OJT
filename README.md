@@ -39,6 +39,11 @@ OJT 교육일지
   - [구조체](https://github.com/bongbong9708/OJT/blob/main/README.md#1-%EA%B5%AC%EC%A1%B0%EC%B2%B4)
   - [클래스](https://github.com/bongbong9708/OJT/blob/main/README.md#2-%ED%81%B4%EB%9E%98%EC%8A%A4)
   - [구조체 vs 클래스](https://github.com/bongbong9708/OJT/blob/main/README.md#3-%EA%B5%AC%EC%A1%B0%EC%B2%B4-vs-%ED%81%B4%EB%9E%98%EC%8A%A4)
+- [UIKit 기초 1]
+  - 뷰
+  - 네비게이션 컨트롤러
+  - 모달
+  - 서브뷰
 
 ## iOS 라이프 사이클
 
@@ -1553,3 +1558,48 @@ print(garen !== darius)         // true
 야곰, 스위프트 프로그래밍 3판 SWIFT5, 한빛미디어 - 9장 구조체와 클래스
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
+## UIKit 기초 1
+
+### 1. 뷰와 서브뷰
+iOS에서 화면 UI구성을 담당하는 핵심적인 요소 중 하나가 View입니다. View에는 여러가지 요소들이 담길 수 있고, 여러 components를 보여주는 용도로 사용됩니다. 뷰는 컨텐츠를 보여주기도 하고 다른 뷰를 위한 컨테이너가 되기도 합니다.
+- 역할
+  - 드로잉 및 애니메이션
+  - 레이아웃 및 subview 관리
+  - 이벤트 처리
+
+- View Hierarchues (뷰 계층구조)
+  - 다른 View 혹은 components들을 담을 수 있습니다. 
+  - View에 다른 View를 담게되면 부모-자식관계가 성립되고, 부모를 SuperView라고 하고 자식을 SubView라고 합니다. 
+  
+![view](https://user-images.githubusercontent.com/88380643/147723426-724d8acc-4cdd-4e27-877e-be07872360d1.jpeg)
+  1. 앱이 실행되면 윈도우가 하나 만들어지고 윈도우에 다른 뷰들을 추가하는게 가능합니다.
+  2. 윈도우에 추가한 뷰를 윈도우의 하위 뷰(subview)라고 한다.
+  3. 윈도우의 하위 뷰 또한 그것의 하의 뷰를 가질 수 있는데 그것을 윈도우를 루트로 한 뷰 객체들의 계층구조하고 합니다.
+![image](https://user-images.githubusercontent.com/88380643/147724507-6bc1f9ee-53ad-43e0-9a94-f3a997028251.png)
+ViewController를 사용하여 View 계층 구조와 연결된 subView를 확인할 수 있습니다.
+- SuperView와 SubView의 계층구조에 따른 몇가지 특징
+  - superView를 제거하면 subView도 함께 제거됩니다.
+  - superView의 투명도는 subView에도 적용됩니다.
+  - superView의 size가 변하면 subView의 size도 함께 변합니다.
+  - superView는 subView를 array로 관리합니다.
+
+### 2. NavigationController, Modal
+실습예제를 통해 진행하였습니다.
+
+[Reference]
+-
+[UIView](https://developer.apple.com/documentation/uikit/uiview)
+
+[SubView](https://developer.apple.com/documentation/uikit/uiview/1622614-subviews)
+
+[View Programming Guide for iOS](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/WindowsandViews/WindowsandViews.html#//apple_ref/doc/uid/TP40009503-CH2-SW1)
+
+[iOS View 아키텍쳐 이해하기](https://hcn1519.github.io/articles/2017-06/iOS_uiview)
+
+[iOS의 View 이해하기](https://woojin-hwang.github.io/ios-view/)
+
+[iOS - 뷰, 윈도우란 무엇일까?](https://minosaekki.tistory.com/7)
+
+[View의 계층구조에 따른 특징과 subView관리를 위한 Method](https://velog.io/@yongchul/iOSView%EC%9D%98-%EA%B3%84%EC%B8%B5%EA%B5%AC%EC%A1%B0)
+
+야곰, 스위프트 프로그래밍 3판 SWIFT5, 한빛미디어 - 9장 구조체와 클래스
