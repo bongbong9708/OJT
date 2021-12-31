@@ -18,6 +18,8 @@
 		43ED8B692769A9020054034E /* SP_PODSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ED8B682769A9020054034E /* SP_PODSTests.swift */; };
 		43ED8B732769A9020054034E /* SP_PODSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ED8B722769A9020054034E /* SP_PODSUITests.swift */; };
 		43ED8B752769A9020054034E /* SP_PODSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ED8B742769A9020054034E /* SP_PODSUITestsLaunchTests.swift */; };
+		88505B73277DA42100C23FFA /* NaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88505B72277DA42100C23FFA /* NaviViewController.swift */; };
+		88505B75277DA42F00C23FFA /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88505B74277DA42F00C23FFA /* ModalViewController.swift */; };
 		8887E7B1277AC5EB00601F8F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8887E7B0277AC5EB00601F8F /* Alamofire */; };
 		AEB42E1E5B6A0A7349851671 /* Pods_SP_PODSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E5EE1AADC4AE93A5BBA4AD /* Pods_SP_PODSTests.framework */; };
 		E260B6693FEFF3B3436C94DD /* Pods_SP_PODS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4691FB95147E27F06D6A71 /* Pods_SP_PODS.framework */; };
@@ -60,6 +62,8 @@
 		43ED8B742769A9020054034E /* SP_PODSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SP_PODSUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		66DAB170B55E247552E38ED0 /* Pods-SP_PODS-SP_PODSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SP_PODS-SP_PODSUITests.release.xcconfig"; path = "Target Support Files/Pods-SP_PODS-SP_PODSUITests/Pods-SP_PODS-SP_PODSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		84F6D0A51FB2AA1744E7B6A5 /* Pods-SP_PODS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SP_PODS.release.xcconfig"; path = "Target Support Files/Pods-SP_PODS/Pods-SP_PODS.release.xcconfig"; sourceTree = "<group>"; };
+		88505B72277DA42100C23FFA /* NaviViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviViewController.swift; sourceTree = "<group>"; };
+		88505B74277DA42F00C23FFA /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		8A4691FB95147E27F06D6A71 /* Pods_SP_PODS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SP_PODS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94E5EE1AADC4AE93A5BBA4AD /* Pods_SP_PODSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SP_PODSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E6B7534EDD87A0925855EF /* Pods_SP_PODS_SP_PODSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SP_PODS_SP_PODSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +127,8 @@
 				43ED8B512769A9000054034E /* AppDelegate.swift */,
 				43ED8B532769A9000054034E /* SceneDelegate.swift */,
 				43ED8B552769A9000054034E /* ViewController.swift */,
+				88505B74277DA42F00C23FFA /* ModalViewController.swift */,
+				88505B72277DA42100C23FFA /* NaviViewController.swift */,
 				43ED8B572769A9000054034E /* Main.storyboard */,
 				43ED8B5A2769A9020054034E /* Assets.xcassets */,
 				43ED8B5C2769A9020054034E /* LaunchScreen.storyboard */,
@@ -418,6 +424,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88505B73277DA42100C23FFA /* NaviViewController.swift in Sources */,
+				88505B75277DA42F00C23FFA /* ModalViewController.swift in Sources */,
 				43ED8B562769A9000054034E /* ViewController.swift in Sources */,
 				43ED8B522769A9000054034E /* AppDelegate.swift in Sources */,
 				43ED8B542769A9000054034E /* SceneDelegate.swift in Sources */,
