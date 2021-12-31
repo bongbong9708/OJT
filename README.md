@@ -39,11 +39,10 @@ OJT 교육일지
   - [구조체](https://github.com/bongbong9708/OJT/blob/main/README.md#1-%EA%B5%AC%EC%A1%B0%EC%B2%B4)
   - [클래스](https://github.com/bongbong9708/OJT/blob/main/README.md#2-%ED%81%B4%EB%9E%98%EC%8A%A4)
   - [구조체 vs 클래스](https://github.com/bongbong9708/OJT/blob/main/README.md#3-%EA%B5%AC%EC%A1%B0%EC%B2%B4-vs-%ED%81%B4%EB%9E%98%EC%8A%A4)
-- [UIKit 기초 1]
-  - 뷰
-  - 네비게이션 컨트롤러
-  - 모달
-  - 서브뷰
+- [UIKit 기초 1](https://github.com/bongbong9708/OJT#uikit-%EA%B8%B0%EC%B4%88-1)
+  - [뷰와 서브뷰](https://github.com/bongbong9708/OJT#1-%EB%B7%B0%EC%99%80-%EC%84%9C%EB%B8%8C%EB%B7%B0)
+  - [네비게이션 컨트롤러](https://github.com/bongbong9708/OJT#2-navigationcontroller)
+  - [모달](https://github.com/bongbong9708/OJT#3-modal)
 
 ## iOS 라이프 사이클
 
@@ -1583,8 +1582,39 @@ ViewController를 사용하여 View 계층 구조와 연결된 subView를 확인
   - superView의 size가 변하면 subView의 size도 함께 변합니다.
   - superView는 subView를 array로 관리합니다.
 
-### 2. NavigationController, Modal
-실습예제를 통해 진행하였습니다.
+### 2. NavigationController
+Navigation Controller : 계층적 내용을 탐색하기 위한 스택 기반 체계를 정의하는 컨테이너 뷰 컨트롤러입니다.
+- Stack을 쌓아가는 구조
+- LIFO(Last In Firest Out)로 역순 탐색을 위한 구조
+- Push : 데이터 쌓기, Pop : 데이터 빼기
+![image](https://user-images.githubusercontent.com/88380643/147797678-fe8f101a-ef15-4ea9-925a-68013b8e09f0.png)
+
+이후 실습을 통해 진행하였습니다.
+
+### 3. Modal
+Modal : 사용자가 원래 보고 있는 화면에 다른 화면을 띄우는 방식
+- 화면을 완전히 전환하는 것이 아닌 화면을 다른 화면 위로 presenting하여 띄우는 방식입니다.
+- 모달은 흐름을 나타낼 때보다는 사용자의 주의나 이목을 끌어야할 때 많이 사용되는 기법입니다.
+- 단순 하고 사용자가 빠르게 처리할 수 있는 내용을 표현하는 것이 좋습니다.
+- Presentation Style
+  - UIModalPresentationFullScreen : 전체 화면을 덮음
+  - UIModalPresentationPageSheet : 페이지를 덮음
+  - UIModalPresentationFormSheet : 폼 형태로 덮음
+  - UIModalPresentationPopover : 팝 오버로 표현(아이폰은 지원X)
+  - UIModalPresentationCureentContext : 원래의 뷰의 크기에 맞춤
+  - UIModalPresentationCustom : 사용자가 커스텀 가능
+
+![image](https://user-images.githubusercontent.com/88380643/147797783-fa10d76d-7541-4572-b591-9efc28cb3742.png)
+
+- Transition Style
+  - coverVertical : 하단에서 새로운 뷰가 올라옴
+  - flipHorizontal : 뷰가 뒤집어지는 느낌
+  - crossDissolve : 화면 전체가 빠르게 바뀜
+  - partialCurl : 위로 책을 넘기는 느낌
+
+![image](https://user-images.githubusercontent.com/88380643/147797838-5ec0cd52-2c9f-4931-80c4-3e3c48700543.png)
+
+이후 실습을 통해 진행하였습니다.
 
 [Reference]
 -
@@ -1602,4 +1632,8 @@ ViewController를 사용하여 View 계층 구조와 연결된 subView를 확인
 
 [View의 계층구조에 따른 특징과 subView관리를 위한 Method](https://velog.io/@yongchul/iOSView%EC%9D%98-%EA%B3%84%EC%B8%B5%EA%B5%AC%EC%A1%B0)
 
-야곰, 스위프트 프로그래밍 3판 SWIFT5, 한빛미디어 - 9장 구조체와 클래스
+[UINavigationController](https://developer.apple.com/documentation/uikit/uinavigationcontroller)
+
+[내비게이션 컨트롤러](https://velog.io/@wook4506/iOS-Swift-Navigation-Controller)
+
+[모달](https://velog.io/@wook4506/iOS-Swift-%EB%AA%A8%EB%8B%AC-Modal)
