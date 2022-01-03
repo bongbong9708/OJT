@@ -33,9 +33,17 @@ OJT 교육일지
   - [연산자](https://github.com/bongbong9708/OJT#2-%EC%97%B0%EC%82%B0%EC%9E%90)
   - [접근제어](https://github.com/bongbong9708/OJT#3-%EC%A0%91%EA%B7%BC%EC%A0%9C%EC%96%B4)
 - [Swift 기초 4](https://github.com/bongbong9708/OJT#swift-%EA%B8%B0%EC%B4%88-4)
-  - [Optionals]-(https://github.com/bongbong9708/OJT#1-optionals) 
-  - [Guard]-(https://github.com/bongbong9708/OJT#2-guard)
-  
+  - [Optionals](https://github.com/bongbong9708/OJT#1-optionals) 
+  - [Guard](https://github.com/bongbong9708/OJT#2-guard)
+- [Swift 기초 5](https://github.com/bongbong9708/OJT/blob/main/README.md#swift-%EA%B8%B0%EC%B4%88-5)
+  - [구조체](https://github.com/bongbong9708/OJT/blob/main/README.md#1-%EA%B5%AC%EC%A1%B0%EC%B2%B4)
+  - [클래스](https://github.com/bongbong9708/OJT/blob/main/README.md#2-%ED%81%B4%EB%9E%98%EC%8A%A4)
+  - [구조체 vs 클래스](https://github.com/bongbong9708/OJT/blob/main/README.md#3-%EA%B5%AC%EC%A1%B0%EC%B2%B4-vs-%ED%81%B4%EB%9E%98%EC%8A%A4)
+- [UIKit 기초 1](https://github.com/bongbong9708/OJT#uikit-%EA%B8%B0%EC%B4%88-1)
+  - [뷰와 서브뷰](https://github.com/bongbong9708/OJT#1-%EB%B7%B0%EC%99%80-%EC%84%9C%EB%B8%8C%EB%B7%B0)
+  - [네비게이션 컨트롤러](https://github.com/bongbong9708/OJT#2-navigationcontroller)
+  - [모달](https://github.com/bongbong9708/OJT#3-modal)
+
 ## iOS 라이프 사이클
 
 ### 1. 앱 생명주기(APP Lifecycle)
@@ -1236,5 +1244,396 @@ print(sortedDevices)
 ## Swift 기초 4
 
 ### 1. Optionals
+옵셔널은 스위프트의 특징 중 하나인 안전성을 문법을 담보하는 기능이다. 옵셔널은 단어 뜻 그대로 '선택적인', 즉 값이 '있을 수도, 없을 수도 있음'을 나타내는 표현입니다. 즉, 변수 또는 상수의 값이 nil일 수도 있다는 것을 의미합니다.
+- 변수 또는 상수에 정말 값이 없을 때만 nil로 표현합니다.
+``` Swift
+var myName: String? = "sangbong"
+print(myName)   // Optional("sangbong")
 
+myName = nil
+print(myName)   // nil
+```
+- 옵셔널 강제추출
+  - 옵셔널의 값을 추출하는 가장 간단하지만 가장 위험한 방법입니다.(런타임 오류가 일어날 가능성이 가장 높기 때문입니다.!)
+  - 강제 추출 시 옵셔널에 값이 없다면, 즉 nil이라면 런타임 오류가 발생합니다.
+``` swift
+var myName: String? = "sangbong"
+print(myName)       // Optional("sangbong")
+print(myName!)      // sangbong
+
+myName = nil
+
+// if 구문 등 조건문을 이용해서 조금 더 안전하게 처리할 수 있습니다.
+if myName != nil {
+    print("My name is \(myName!)")
+} else {
+    print("myName == nil")
+}
+// myName == nil
+```
+- 옵셔널 바인딩
+    - 옵셔널에 값이 있는지 확인할 때 사용합니다.
+    - 만약 옵셔널에 값이 있다면 옵셔널에서 추출한 값을 일정 블록 안에서 사용할 수 있는 상수나 변수로 할당해서 옵셔널이 아닌 형태로 사용할 수 있도록 해줍니다.
+    - if 또는 while 구문 등과 결합하여 사용합니다.
+``` swift
+var myAge: Int? = 25
+var yourAge: Int? = nil
+
+if let age = myAge, let friend = yourAge {
+    print("We are friend! \(age) & \(friend)")
+} else {
+    print("Age == nil")
+}
+// Age == nil
+```
+- 암시적 추출 옵셔널
+  - 암시적 추출 옵셔널을 사용하려면 타입 뒤에 느낌표를 사용해주면 됩니다.
+  - 암시적 추출 옵셔널로 지정된 타입은 일반 값처럼 사용할 수 있으나, 여전히 옵셔널이기 떄문에 nil도 할당해줄 수 있습니다.
+  - 그러나 nil이 할당되어 있을 때 접근을 시도하면 런타임 오류가 발생합니다.
+``` swift
+var myHeight: Int! = 179
+print(myHeight)     // Optional(179)
+myHeight = nil
+
+if let height = myHeight {
+    print("My height is \(height)")
+} else {
+    print("myHeight == nil")
+}
+
+//  myHeight.isEmpty - 오류 발생
+```
 ### 2. Guard
+guard 구문은 if 구문과 유사하게 Bool 타입의 값으로 동작하는 기능입니다. 
+- guard 뒤에 따라붙는 코드의 실행 결과가 true일 때 코드가 계속 실행됩니다.
+- guard 뒤에 따라오는 Bool 값이 false라면 else의 블록 내부 코드를 실행하게 되는데, 이때 else 구문의 블록 내부에는 꼭 자신보다 상위의 코드 블록을 종료하는 코드가 들어가게 됩니다.(retrun, break, continue, throw 등 제어문 전환 명령 또는 fatalError()와 같은 비반환 함수나 메서드 호출)
+``` swift
+guard Bool 타입 값 else {
+  예외사항 실행문
+  제어문 전환 명령어
+}
+```
+- guard 구문을 사용하면 if 코드를 훨씬 간결하고 읽기 좋게 구성할 수 있습니다.
+``` swift
+/ if 구문을 사용한 코드
+for i in 0...3 {
+    if i == 2 {
+        print(i)
+    } else {
+        continue
+    }
+}
+
+// guard 구문을 사용한 코드
+for i in 0...3 {
+    guard i == 2 else {
+        continue
+    }
+    print(i)
+}
+```
+- guard 구문은 옵셔널 바인딩의 역할도 할 수 있습니다.
+- guard 뒤에 따라오는 옵셔널 바인딩 표현에서 옵셔널의 값이 있는 상태라면 guard 구문에서 옵셔널 바인딩된 상수를 guard 구문이 실행된 아래 코드부터 함수 내부의 지역상수처럼 사용할 수 있습니다.
+``` swift
+// guard 구문의 옵셔널 바인딩 활용
+func greet(_ person: [String: String]) {
+    guard let name: String = person["name"] else {
+        return
+    }
+    print("Hello \(name)!")
+    
+    guard let location: String = person["location"] else {
+        print("I hope the weather is nice near you")
+        return
+    }
+
+    print("I hope the weather is nice in \(location)")
+}
+
+var personInfo: [String: String] = [String: String]()
+personInfo["name"] = "elsa"
+
+greet(personInfo)
+// Hello elsa!
+// I hope the weather is nice near you
+
+personInfo["location"] = "Korea"
+
+greet(personInfo)
+// Hello elsa!
+// I hope the weather is nice in Korea
+
+
+```
+
+[Reference]
+-
+
+[옵셔널](https://xodhks0113.blogspot.com/2019/07/swift-optionals.html)
+[Guard](https://xodhks0113.blogspot.com/2019/10/swift-guard.html)
+
+야곰, 스위프트 프로그래밍 3판 SWIFT5, 한빛미디어
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+## Swift 기초 5
+
+### 1. 구조체
+- struct 키워드로 정의
+``` swift
+// 구조체 정의
+struct BasicInformation {
+    var name: String
+    var age: Int
+}
+```
+- 프로퍼티 이름으로 자동 생성된 이니셜라이저를 사용하여 구조체를 생성합니다.
+``` swift
+// 구조체의 인스턴스 생성 및 사용
+var mobileInfo: BasicInformation = BasicInformation(name: "sangbong", age: 25)
+print("\(mobileInfo.name)는 \(mobileInfo.age)살입니다. ")    // sangbong는 25살입니다. 
+
+mobileInfo.name = "galio"
+mobileInfo.age = 100
+
+print("\(mobileInfo.name)는 \(mobileInfo.age)살입니다. ")    // galio는 100살입니다. 
+// 상수 let으로 선언하면 인스턴스 내부의 값을 변경할 수 없다.
+```
+### 2. 클래스
+- class 키워드로 정의
+``` swift
+// 클래스 정의
+class Person {
+    var height: Float = 0.0
+    var weight: Float = 0.0
+}
+
+// 클래스는 상속을 받을 수 있어 상속을 받을 때는 클래스 이름 뒤어 콜론(:)을 써주고 부모클래스 이름을 명시
+class PersonAdult: Person {
+    var name: String = ""
+    var age: Int = 0
+}
+```
+- 클래스를 정의한 후, 인스턴스를 생성하고 초기화하자고 할때는 기본적인 이니셜라이저를 사용
+- Person 클래스에서는 프로퍼티 기본값이 지정되어 있으므로 전달인자를 통해 따로 초깃값을 전달해주지 않아도 됌
+``` swift
+// 클래스의 인스턴스 생성 및 사용
+var sangbong: PersonAdult = PersonAdult()
+sangbong.height = 123.45
+sangbong.weight = 123.45
+sangbong.name = "sangbong"
+sangbong.age = 25
+
+print(sangbong.height)    // 123.45
+
+var jenny: Person = Person()
+jenny.weight = 234.56
+// jenny.name = "jenny"      // 에러 발생
+```
+- 클래스의 인스턴스는 참조 타입이므로 더는 참조할 필요가 없을때 메모리에서 해제됩니다.(소멸)
+- 소멸되기 직전 deinit라는 메서드가 호출됩니다.
+
+  - 디이니셜라이저는 클래스당 하나만 구현할 수 있습니다
+  - 매개변수와 반환 값을 가질 수 없습니다.
+  - 매개변수를 위한 소괄호도 적어주지 않습니다.
+``` swift
+// 클래스 인스턴스의 생성 및 소멸
+class PersonDeinit {
+    var height: Float = 0.0
+    var weight: Float = 0.0
+    
+    deinit {
+        print("PersonDeinit 클래스의 인스턴스가 소멸")   // ersonDeinit 클래스의 인스턴스가 소멸
+    }
+}
+
+var yagom: PersonDeinit? = PersonDeinit()
+yagom = nil     // nil
+```
+### 3. 구조체 vs 클래스
+구조체와 클래스의 같은 점
+
+> 값을 저장하기 위해 프로퍼티를 정의할 수 있습니다. 
+> 
+> 기능 실행을 위해 메서드를 정의할 수 있습니다. 
+> 
+> 서브스크립트 문법을 통해 구조체 또는 클래스가 갖는 값(프로퍼티)에 접근하도록 서브스크립트를 정의할 수 있습니다.
+> 
+> 초기화될 때의 상태를 지정하기 위해 이니셜라아저를 정의할 수 있습니다.
+> 
+> 초기구현과 더불어 새로운 기능 추가를 위해 익스텐션을 통해 확장할 수 있습니다.
+> 
+> 특정기능을 실행하기 위해 특정 프로토콜을 준수할 수 있습니다.
+
+구조체와 클래스의 다른 점
+
+> 구조체는 상속할 수 없습니다.
+> 
+> 타입캐스팅은 클래스의 인스턴스에만 허용됩니다.
+> 
+> 디이니셜라이저는 클래스의 인스턴스에만 활용할 수 있습니다.
+> 
+> 참조 횟수 계산은 클래스의 인스턴스에만 적용됩니다.
+
+- 값 타입과 참조 타입
+
+  - 구조체는 값 타입이고, 클래스는 참조 타입이다.
+  - 전달인자로 값을 넘긴다면 값 타입은 전달되는 값이 복사되고, 참조 타입은 참조(주소)가 전달 됩니다.
+``` swift
+// 값 타입
+struct BasicInfo {
+    let name: String
+    var age: Int
+}
+
+var bongInfo: BasicInfo = BasicInfo(name: "sangbong", age: 25)
+bongInfo.age = 100
+
+// bongInfo의 값을 복사하여 할당
+var galioInfo: BasicInfo = bongInfo
+
+print("bong's age: \(bongInfo.age)")        // bong's age: 100
+print("galio's age: \(galioInfo.age)")      // galio's age: 100
+
+galioInfo.age = 999
+
+print("bong's age: \(bongInfo.age)")        // bong's age: 100
+print("galio's age: \(galioInfo.age)")      // galio's age: 999
+// galioInfo는 bongInfo의 값을 복사해왔기 때문에 별개의 값을 갖는다.
+```
+``` swift
+// 참조타입
+class People {
+    var height: Float = 0.0
+    var weight: Float = 0.0
+}
+
+var bongbong: People = People()
+var gagalgang: People = bongbong
+// bongbong의 참조를 할당합니다.
+
+print("bongbong's weight: \(bongbong.weight)")      // bongbong's weight: 0.0
+print("gagalgang's weight: \(gagalgang.weight)")        // gagalgang's weight: 0.0
+
+gagalgang.weight = 123.4
+print("bongbong's weight: \(bongbong.weight)")      // bongbong's weight: 123.4
+// gagalgang은 bongbong을 참조하기 때문에 값이 변동됩니다.
+
+print("gagalgang's weight: \(gagalgang.weight)")        // gagalgang's weight: 123.4
+// 이를 통해 bongbong이 참조하는 곳과 gagalgang이 참조하는 곳이 같음을 알 수 있습니다.
+```
+- 클래스의 식별 연산자
+
+  - 클래스의 인스턴스끼리 참조가 같은지 확인할 때는 식별 연산자를 사용합니다.
+  - 두 참조가 같은 인스턴스를 가리키고 있는지 비교해보는 코드입니다.
+``` swift
+var bongbong: People = People()
+let garen: People = bongbong        // bongbong의 참조를 할당
+let darius: People = People()       // 새로운 인스턴스를 생성합니다.
+
+print(bongbong === garen)       // true
+print(bongbong === darius)      // false
+print(garen !== darius)         // true
+```
+- 구조체와 클래스 선택해서 사용하기
+  - [애플 가이드라인](https://developer.apple.com/documentation/swift/choosing_between_structures_and_classes)
+    - 기본적으로 구조체 선택합니다.
+    - Objective-C 상호 운용성이 필요할 때 클래스를 사용합니다.
+    - ID를 제어해야할 때 클래스를 사용합니다.
+    - ID를 제어하지 못할 때 구조체를 사용합니다.
+    - 프로토콜과 함께 구조체를 사용하여 구현을 공유하여 동작을 구현하십시오.
+
+  - 일반적으로 다음 조건 중 1개 이상을 만족하면 구조체를 사용하는 것을 고려해 볼 수 있습니다.
+    - 연관된 간단한 값이 집합을 캡슐화하는 것만이 목적일 때
+    - 캡슐화한 값을 참조하는 것보다 복사하는 것이 합당할 때
+    - 구조체에 저장된 프로퍼티가 값 타입이며 참조하는 것보다 복사하는 것이 합당할 때
+    - 다른 타입으로부터 상속받거나 자신을 상속할 필요가 없을 때
+
+[Reference]
+-
+[구조체 vs 클래스](https://xodhks0113.blogspot.com/2019/09/swift-vs-struct-vs-class.html)
+
+[애플 가이드라인](https://developer.apple.com/documentation/swift/choosing_between_structures_and_classes)
+
+야곰, 스위프트 프로그래밍 3판 SWIFT5, 한빛미디어 - 9장 구조체와 클래스
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+## UIKit 기초 1
+
+### 1. 뷰와 서브뷰
+iOS에서 화면 UI구성을 담당하는 핵심적인 요소 중 하나가 View입니다. View에는 여러가지 요소들이 담길 수 있고, 여러 components를 보여주는 용도로 사용됩니다. 뷰는 컨텐츠를 보여주기도 하고 다른 뷰를 위한 컨테이너가 되기도 합니다.
+- 역할
+  - 드로잉 및 애니메이션
+  - 레이아웃 및 subview 관리
+  - 이벤트 처리
+
+- View Hierarchues (뷰 계층구조)
+  - 다른 View 혹은 components들을 담을 수 있습니다. 
+  - View에 다른 View를 담게되면 부모-자식관계가 성립되고, 부모를 SuperView라고 하고 자식을 SubView라고 합니다. 
+  
+![view](https://user-images.githubusercontent.com/88380643/147723426-724d8acc-4cdd-4e27-877e-be07872360d1.jpeg)
+  1. 앱이 실행되면 윈도우가 하나 만들어지고 윈도우에 다른 뷰들을 추가하는게 가능합니다.
+  2. 윈도우에 추가한 뷰를 윈도우의 하위 뷰(subview)라고 한다.
+  3. 윈도우의 하위 뷰 또한 그것의 하의 뷰를 가질 수 있는데 그것을 윈도우를 루트로 한 뷰 객체들의 계층구조하고 합니다.
+![image](https://user-images.githubusercontent.com/88380643/147724507-6bc1f9ee-53ad-43e0-9a94-f3a997028251.png)
+ViewController를 사용하여 View 계층 구조와 연결된 subView를 확인할 수 있습니다.
+- SuperView와 SubView의 계층구조에 따른 몇가지 특징
+  - superView를 제거하면 subView도 함께 제거됩니다.
+  - superView의 투명도는 subView에도 적용됩니다.
+  - superView의 size가 변하면 subView의 size도 함께 변합니다.
+  - superView는 subView를 array로 관리합니다.
+
+### 2. NavigationController
+Navigation Controller : 계층적 내용을 탐색하기 위한 스택 기반 체계를 정의하는 컨테이너 뷰 컨트롤러입니다.
+- Stack을 쌓아가는 구조
+- LIFO(Last In Firest Out)로 역순 탐색을 위한 구조
+- Push : 데이터 쌓기, Pop : 데이터 빼기
+![image](https://user-images.githubusercontent.com/88380643/147797678-fe8f101a-ef15-4ea9-925a-68013b8e09f0.png)
+
+이후 실습을 통해 진행하였습니다.
+
+### 3. Modal
+Modal : 사용자가 원래 보고 있는 화면에 다른 화면을 띄우는 방식
+- 화면을 완전히 전환하는 것이 아닌 화면을 다른 화면 위로 presenting하여 띄우는 방식입니다.
+- 모달은 흐름을 나타낼 때보다는 사용자의 주의나 이목을 끌어야할 때 많이 사용되는 기법입니다.
+- 단순 하고 사용자가 빠르게 처리할 수 있는 내용을 표현하는 것이 좋습니다.
+- Presentation Style
+  - UIModalPresentationFullScreen : 전체 화면을 덮음
+  - UIModalPresentationPageSheet : 페이지를 덮음
+  - UIModalPresentationFormSheet : 폼 형태로 덮음
+  - UIModalPresentationPopover : 팝 오버로 표현(아이폰은 지원X)
+  - UIModalPresentationCureentContext : 원래의 뷰의 크기에 맞춤
+  - UIModalPresentationCustom : 사용자가 커스텀 가능
+
+![image](https://user-images.githubusercontent.com/88380643/147797783-fa10d76d-7541-4572-b591-9efc28cb3742.png)
+
+- Transition Style
+  - coverVertical : 하단에서 새로운 뷰가 올라옴
+  - flipHorizontal : 뷰가 뒤집어지는 느낌
+  - crossDissolve : 화면 전체가 빠르게 바뀜
+  - partialCurl : 위로 책을 넘기는 느낌
+
+![image](https://user-images.githubusercontent.com/88380643/147797838-5ec0cd52-2c9f-4931-80c4-3e3c48700543.png)
+
+이후 실습을 통해 진행하였습니다.
+
+[Reference]
+-
+[UIView](https://developer.apple.com/documentation/uikit/uiview)
+
+[SubView](https://developer.apple.com/documentation/uikit/uiview/1622614-subviews)
+
+[View Programming Guide for iOS](https://developer.apple.com/library/archive/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/WindowsandViews/WindowsandViews.html#//apple_ref/doc/uid/TP40009503-CH2-SW1)
+
+[iOS View 아키텍쳐 이해하기](https://hcn1519.github.io/articles/2017-06/iOS_uiview)
+
+[iOS의 View 이해하기](https://woojin-hwang.github.io/ios-view/)
+
+[iOS - 뷰, 윈도우란 무엇일까?](https://minosaekki.tistory.com/7)
+
+[View의 계층구조에 따른 특징과 subView관리를 위한 Method](https://velog.io/@yongchul/iOSView%EC%9D%98-%EA%B3%84%EC%B8%B5%EA%B5%AC%EC%A1%B0)
+
+[UINavigationController](https://developer.apple.com/documentation/uikit/uinavigationcontroller)
+
+[내비게이션 컨트롤러](https://velog.io/@wook4506/iOS-Swift-Navigation-Controller)
+
+[모달](https://velog.io/@wook4506/iOS-Swift-%EB%AA%A8%EB%8B%AC-Modal)
