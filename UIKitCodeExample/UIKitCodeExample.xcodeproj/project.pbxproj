@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88020ECE2784113F00282FC2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 88020ECD2784113F00282FC2 /* SnapKit */; };
+		88020ED12784114C00282FC2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 88020ED02784114C00282FC2 /* SDWebImage */; };
+		88020ED32784114C00282FC2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 88020ED22784114C00282FC2 /* SDWebImageMapKit */; };
+		88020ED72784147700282FC2 /* WebKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88020ED62784147700282FC2 /* WebKitViewController.swift */; };
+		88020ED927841FE600282FC2 /* MapKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88020ED827841FE600282FC2 /* MapKitViewController.swift */; };
 		88505B03277DA05300C23FFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88505B02277DA05300C23FFA /* AppDelegate.swift */; };
 		88505B05277DA05300C23FFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88505B04277DA05300C23FFA /* SceneDelegate.swift */; };
 		88505B07277DA05300C23FFA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88505B06277DA05300C23FFA /* ViewController.swift */; };
@@ -17,7 +22,6 @@
 		88505B26277DA05400C23FFA /* UIKitCodeExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88505B25277DA05400C23FFA /* UIKitCodeExampleUITestsLaunchTests.swift */; };
 		88505B33277DA0E100C23FFA /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88505B32277DA0E100C23FFA /* ModalViewController.swift */; };
 		88505B35277DA0EB00C23FFA /* NaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88505B34277DA0EB00C23FFA /* NaviViewController.swift */; };
-		887AEA382782D63300483F0C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 887AEA372782D63300483F0C /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		88020ED62784147700282FC2 /* WebKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKitViewController.swift; sourceTree = "<group>"; };
+		88020ED827841FE600282FC2 /* MapKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitViewController.swift; sourceTree = "<group>"; };
 		88505AFF277DA05300C23FFA /* UIKitCodeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitCodeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88505B02277DA05300C23FFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88505B04277DA05300C23FFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,7 +65,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				887AEA382782D63300483F0C /* SnapKit in Frameworks */,
+				88020ED12784114C00282FC2 /* SDWebImage in Frameworks */,
+				88020ED32784114C00282FC2 /* SDWebImageMapKit in Frameworks */,
+				88020ECE2784113F00282FC2 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +88,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		88020EDA27841FEE00282FC2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				88505B06277DA05300C23FFA /* ViewController.swift */,
+				88020EDB2784201D00282FC2 /* Sub */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		88020EDB2784201D00282FC2 /* Sub */ = {
+			isa = PBXGroup;
+			children = (
+				88505B32277DA0E100C23FFA /* ModalViewController.swift */,
+				88505B34277DA0EB00C23FFA /* NaviViewController.swift */,
+				88020ED62784147700282FC2 /* WebKitViewController.swift */,
+				88020ED827841FE600282FC2 /* MapKitViewController.swift */,
+			);
+			path = Sub;
+			sourceTree = "<group>";
+		};
 		88505AF6277DA05300C23FFA = {
 			isa = PBXGroup;
 			children = (
@@ -105,9 +133,7 @@
 			children = (
 				88505B02277DA05300C23FFA /* AppDelegate.swift */,
 				88505B04277DA05300C23FFA /* SceneDelegate.swift */,
-				88505B06277DA05300C23FFA /* ViewController.swift */,
-				88505B32277DA0E100C23FFA /* ModalViewController.swift */,
-				88505B34277DA0EB00C23FFA /* NaviViewController.swift */,
+				88020EDA27841FEE00282FC2 /* ViewControllers */,
 				88505B0B277DA05400C23FFA /* Assets.xcassets */,
 				88505B0D277DA05400C23FFA /* LaunchScreen.storyboard */,
 				88505B10277DA05400C23FFA /* Info.plist */,
@@ -149,7 +175,9 @@
 			);
 			name = UIKitCodeExample;
 			packageProductDependencies = (
-				887AEA372782D63300483F0C /* SnapKit */,
+				88020ECD2784113F00282FC2 /* SnapKit */,
+				88020ED02784114C00282FC2 /* SDWebImage */,
+				88020ED22784114C00282FC2 /* SDWebImageMapKit */,
 			);
 			productName = UIKitCodeExample;
 			productReference = 88505AFF277DA05300C23FFA /* UIKitCodeExample.app */;
@@ -224,7 +252,8 @@
 			);
 			mainGroup = 88505AF6277DA05300C23FFA;
 			packageReferences = (
-				887AEA362782D63300483F0C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				88020ECC2784113F00282FC2 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				88020ECF2784114B00282FC2 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 88505B00277DA05300C23FFA /* Products */;
 			projectDirPath = "";
@@ -270,6 +299,8 @@
 			files = (
 				88505B33277DA0E100C23FFA /* ModalViewController.swift in Sources */,
 				88505B07277DA05300C23FFA /* ViewController.swift in Sources */,
+				88020ED927841FE600282FC2 /* MapKitViewController.swift in Sources */,
+				88020ED72784147700282FC2 /* WebKitViewController.swift in Sources */,
 				88505B03277DA05300C23FFA /* AppDelegate.swift in Sources */,
 				88505B05277DA05300C23FFA /* SceneDelegate.swift in Sources */,
 				88505B35277DA0EB00C23FFA /* NaviViewController.swift in Sources */,
@@ -608,7 +639,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		887AEA362782D63300483F0C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		88020ECC2784113F00282FC2 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -616,13 +647,31 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		88020ECF2784114B00282FC2 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		887AEA372782D63300483F0C /* SnapKit */ = {
+		88020ECD2784113F00282FC2 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 887AEA362782D63300483F0C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 88020ECC2784113F00282FC2 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		88020ED02784114C00282FC2 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88020ECF2784114B00282FC2 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		88020ED22784114C00282FC2 /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88020ECF2784114B00282FC2 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

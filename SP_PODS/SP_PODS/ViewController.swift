@@ -9,10 +9,26 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // outlet 변수 추가
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var textViewLabel: UILabel!
+    
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var textFieldLabel: UILabel!
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        
+        textView.delegate = self
+        
+        // 다른 view를 tap하면 editing 종료
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapTextView))
+        view.addGestureRecognizer(tapGesture)
     }
 
     // 스토리보드로로 Modal 화면 전환하기
@@ -66,5 +82,44 @@ class ViewController: UIViewController {
 //        self.navigationController?.pushViewController(naviVC, animated: true)
     }
     
+    
+    @IBAction func textViewBtn(_ sender: Any) {
+        textViewLabel.text = textView.text
+    }
+    
+    // TextField의 데이터를 textFieldLabel로 전달해주는 Button
+    @IBAction func textFieldBtn(_ sender: Any) {
+        textFieldLabel.text = textField.text
+    }
+    
+    // textView에 편집을 종료하는 함수
+    @objc func didTapTextView() {
+        view.endEditing(true)
+    }
 }
 
+extension ViewController: UITextViewDelegate {
+    // textView 편집이 시작될때
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textViewSetupView()
+    }
+    
+    // textView 편집이 종료될때
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            textViewSetupView()
+        }
+        print("\(textView.text!)")
+    }
+    
+    // textView Placeholder 설정
+    func textViewSetupView() {
+        if textView.text == "TextView 내용을 입력하세요." {
+            textView.text = ""
+            textView.textColor = .black
+        } else if textView.text == "" {
+            textView.text = "TextView 내용을 입력하세요."
+            textView.textColor = .lightGray
+        }
+    }
+}

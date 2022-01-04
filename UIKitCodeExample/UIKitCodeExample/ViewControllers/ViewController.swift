@@ -117,30 +117,83 @@ class ViewController: UIViewController {
         return btn
     }()
     
+    // 3-1. imageView 생성
+    let imageView: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "상봉.png")
+        image.contentMode = .scaleAspectFit
+        image.backgroundColor = .white
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
+    
+    // 3-2. WebKitViewController로 가는 버튼 생성
+    let webKitBtn: UIButton = {
+        let button = UIButton()
+        button.setTitle("WebKit View", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(moveToWebKitVC), for: .touchUpInside)
+        return button
+    }()
+    
+    // 3-3. MapKitViewController로 가는 버튼 생성
+    let mapKitBtn: UIButton = {
+        let button = UIButton()
+        button.setTitle("MapKit View", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(moveToMapKitVC), for: .touchUpInside)
+        return button
+    }()
+    
+    
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Segue"
         view.backgroundColor = .systemBackground
         
+        // 서브뷰 순서에 때문에 에러가 발생하여 순서를 알맞게 수정
+        configureScrollView()       // 2-1. 스크롤 뷰
+        
+        configureModalBtn()         // 1-1. 모달
+        configureNaviBtn()          // 1-2. 네비게이션
+        
         textView.delegate = self
-
-        configureModalBtn()
-        configureNaviBtn()
         
-        configureScrollView()
-        configureTextView()
-        configureTextField()
+        configureTextView()         // 2-2. 텍스트뷰
+        configureTextViewData()     // 텍스트뷰 데이터
         
-        // TextView 데이터가져오기
-        configureTextViewData()
-        // TextField 데이터가져오기
-        configureTextFieldData()
+        configureTextField()        // 2-3. 텍스트 필드
+        configureTextFieldData()    // 텍스트 필드 데이터
+        
+        configureImageView()        // 3-1. 이미지뷰
+        configureWebkitBtn()        // 3-2. 웹킷뷰
+        configureMapkitBtn()        // 3-3. 맵킷뷰
         
         // 다른 view를 tap하면 editing 종료
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapTextView))
         view.addGestureRecognizer(tapGesture)
 
+    }
+    
+    // MARK: - 서브뷰 추가 및 레이아웃 설정
+    
+    func configureScrollView() {
+        // 2-1.뷰에 scrollView 서브뷰 추가
+        view.addSubview(scrollView)
+        
+        // 2-1. 스크롤뷰 제약조건 추가
+        NSLayoutConstraint.activate([
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
+        ])
     }
 
     func configureModalBtn() {
@@ -150,7 +203,8 @@ class ViewController: UIViewController {
         // 2-1. modal 버튼 레이아웃 설정
         NSLayoutConstraint.activate([
             modal.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 200),
-            modal.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 150)
+            modal.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            modal.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
         ])
     }
     
@@ -161,20 +215,8 @@ class ViewController: UIViewController {
         // 2-1. navigation 버튼 레이아웃 설정
         NSLayoutConstraint.activate([
             navigation.topAnchor.constraint(equalTo: modal.topAnchor, constant: 200),
-            navigation.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 150)
-        ])
-    }
-    
-    func configureScrollView() {
-        // 2-1.뷰에 scrollView 서브뷰 추가
-        view.addSubview(scrollView)
-        
-        // 2-1. 스크롤뷰 제약조건 추가
-        NSLayoutConstraint.activate([
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+            navigation.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
+            navigation.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0)
         ])
     }
     
@@ -194,20 +236,19 @@ class ViewController: UIViewController {
     
     func configureTextViewData() {
         // 2-2. ScrollView에 textView의 label, button 추가
-        scrollView.addSubview(textViewLabel)
         scrollView.addSubview(textViewButton)
+        scrollView.addSubview(textViewLabel)
         
         // 2-2. textView label, button 레이아웃 설정
         NSLayoutConstraint.activate([
             textViewButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
             textViewButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
             textViewButton.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 20),
-            textViewButton.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -40),
             textField.heightAnchor.constraint(equalToConstant: 30),
             
             textViewLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            textViewLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
             textViewLabel.topAnchor.constraint(equalTo: textViewButton.bottomAnchor, constant: 20),
-            textViewLabel.widthAnchor.constraint(equalTo: textView.widthAnchor),
             textViewLabel.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
@@ -219,31 +260,72 @@ class ViewController: UIViewController {
         // 2-3. textField 레이아웃 설정
         NSLayoutConstraint.activate([
             textField.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
-            textField.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -100),
-            textField.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 500),
+            textField.topAnchor.constraint(equalTo: textViewLabel.bottomAnchor, constant: 200),
             textField.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
     
     func configureTextFieldData() {
         // 2-3. ScrollView에 textField의 label, button 추가
-        scrollView.addSubview(textFieldLabel)
         scrollView.addSubview(textFieldButton)
+        scrollView.addSubview(textFieldLabel)
         
         // 2-3. textField label, button 레이아웃 설정
         NSLayoutConstraint.activate([
             textFieldButton.leadingAnchor.constraint(equalTo: textField.trailingAnchor, constant: 20),
             textFieldButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
-            textFieldButton.topAnchor.constraint(equalTo: textView.bottomAnchor, constant: 500),
+            textFieldButton.topAnchor.constraint(equalTo: textViewLabel.bottomAnchor, constant: 200),
             textFieldButton.heightAnchor.constraint(equalToConstant: 30),
             
             textFieldLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
             textFieldLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
             textFieldLabel.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 20),
-            textFieldLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -200),
             textFieldLabel.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
+    
+    func configureImageView() {
+        // 3-1. scrollView에 imageView 추가
+        scrollView.addSubview(imageView)
+        
+        // 3-1. imageView 레이아웃 설정
+        NSLayoutConstraint.activate([
+            imageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            imageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
+            imageView.topAnchor.constraint(equalTo: textFieldLabel.bottomAnchor, constant: 200),
+            
+            // 사진 비율이 1대1
+            imageView.widthAnchor.constraint(equalTo: textFieldLabel.widthAnchor),
+            imageView.heightAnchor.constraint(equalTo: textFieldLabel.widthAnchor)
+        ])
+    }
+    
+    func configureWebkitBtn() {
+        // 3-2. scrollView에 webKitBtn 추가
+        scrollView.addSubview(webKitBtn)
+        
+        // 3-2. webkitBtn 레이아웃 설정
+        NSLayoutConstraint.activate([
+            webKitBtn.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 200),
+            webKitBtn.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
+            webKitBtn.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0)
+        ])
+    }
+    
+    func configureMapkitBtn() {
+        // 3-3. scrollView에 mapKitBtn 추가
+        scrollView.addSubview(mapKitBtn)
+        
+        // 3-3. mapkitBtn 레이아웃 설정
+        NSLayoutConstraint.activate([
+            mapKitBtn.topAnchor.constraint(equalTo: webKitBtn.bottomAnchor, constant: 200),
+            mapKitBtn.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
+            mapKitBtn.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0),
+            mapKitBtn.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -200)
+        ])
+    }
+    
+    // MARK: - objc func 설정
     
     // 1. ModalVC로 보내는 present 생성
     @objc func moveToModalVC() {
@@ -274,8 +356,22 @@ class ViewController: UIViewController {
     @objc func didTapTextFieldBtn() {
         textFieldLabel.text = textField.text
     }
+    
+    // 3-2. webKitViewController로 가는 Push 함수 생성
+    @objc func moveToWebKitVC() {
+        let webKitVC = WebKitViewController()
+        self.navigationController?.pushViewController(webKitVC, animated: true)
+    }
+    
+    // 3-3. mapKitViewController로 가는 Push 함수 생성
+    @objc func moveToMapKitVC() {
+        let mapKitVC = MapKitViewController()
+        self.navigationController?.pushViewController(mapKitVC, animated: true)
+    }
 }
 
+
+// MARK: - textView 설정
 extension ViewController: UITextViewDelegate {
     
     // textView 편집이 시작될때

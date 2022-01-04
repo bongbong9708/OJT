@@ -18,6 +18,7 @@
 		43ED8B692769A9020054034E /* SP_PODSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ED8B682769A9020054034E /* SP_PODSTests.swift */; };
 		43ED8B732769A9020054034E /* SP_PODSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ED8B722769A9020054034E /* SP_PODSUITests.swift */; };
 		43ED8B752769A9020054034E /* SP_PODSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43ED8B742769A9020054034E /* SP_PODSUITestsLaunchTests.swift */; };
+		88020ED52784129300282FC2 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88020ED42784129300282FC2 /* WebKit.framework */; };
 		88505B73277DA42100C23FFA /* NaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88505B72277DA42100C23FFA /* NaviViewController.swift */; };
 		88505B75277DA42F00C23FFA /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88505B74277DA42F00C23FFA /* ModalViewController.swift */; };
 		8887E7B1277AC5EB00601F8F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8887E7B0277AC5EB00601F8F /* Alamofire */; };
@@ -62,6 +63,7 @@
 		43ED8B742769A9020054034E /* SP_PODSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SP_PODSUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		66DAB170B55E247552E38ED0 /* Pods-SP_PODS-SP_PODSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SP_PODS-SP_PODSUITests.release.xcconfig"; path = "Target Support Files/Pods-SP_PODS-SP_PODSUITests/Pods-SP_PODS-SP_PODSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		84F6D0A51FB2AA1744E7B6A5 /* Pods-SP_PODS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SP_PODS.release.xcconfig"; path = "Target Support Files/Pods-SP_PODS/Pods-SP_PODS.release.xcconfig"; sourceTree = "<group>"; };
+		88020ED42784129300282FC2 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		88505B72277DA42100C23FFA /* NaviViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviViewController.swift; sourceTree = "<group>"; };
 		88505B74277DA42F00C23FFA /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		8A4691FB95147E27F06D6A71 /* Pods_SP_PODS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SP_PODS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88020ED52784129300282FC2 /* WebKit.framework in Frameworks */,
 				8887E7B1277AC5EB00601F8F /* Alamofire in Frameworks */,
 				438ADF33277037D600B256E2 /* Kingfisher in Frameworks */,
 				E260B6693FEFF3B3436C94DD /* Pods_SP_PODS.framework in Frameworks */,
@@ -157,6 +160,7 @@
 		5357C7BF2DB279D32E4BC535 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				88020ED42784129300282FC2 /* WebKit.framework */,
 				8A4691FB95147E27F06D6A71 /* Pods_SP_PODS.framework */,
 				B4E6B7534EDD87A0925855EF /* Pods_SP_PODS_SP_PODSUITests.framework */,
 				94E5EE1AADC4AE93A5BBA4AD /* Pods_SP_PODSTests.framework */,
