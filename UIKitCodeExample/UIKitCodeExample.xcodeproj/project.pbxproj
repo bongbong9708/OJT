@@ -22,6 +22,10 @@
 		88505B26277DA05400C23FFA /* UIKitCodeExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88505B25277DA05400C23FFA /* UIKitCodeExampleUITestsLaunchTests.swift */; };
 		88505B33277DA0E100C23FFA /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88505B32277DA0E100C23FFA /* ModalViewController.swift */; };
 		88505B35277DA0EB00C23FFA /* NaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88505B34277DA0EB00C23FFA /* NaviViewController.swift */; };
+		8883647E278524A100FD2AB6 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8883647D278524A100FD2AB6 /* TableViewController.swift */; };
+		888364822785584200FD2AB6 /* UIKitCodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888364812785584200FD2AB6 /* UIKitCodeTableViewCell.swift */; };
+		88836486278578D200FD2AB6 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88836485278578D200FD2AB6 /* CollectionViewController.swift */; };
+		8883648827857A1E00FD2AB6 /* UIKitCodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8883648727857A1E00FD2AB6 /* UIKitCodeCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +62,10 @@
 		88505B25277DA05400C23FFA /* UIKitCodeExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitCodeExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		88505B32277DA0E100C23FFA /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		88505B34277DA0EB00C23FFA /* NaviViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviViewController.swift; sourceTree = "<group>"; };
+		8883647D278524A100FD2AB6 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		888364812785584200FD2AB6 /* UIKitCodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitCodeTableViewCell.swift; sourceTree = "<group>"; };
+		88836485278578D200FD2AB6 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		8883648727857A1E00FD2AB6 /* UIKitCodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitCodeCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +112,8 @@
 				88505B34277DA0EB00C23FFA /* NaviViewController.swift */,
 				88020ED62784147700282FC2 /* WebKitViewController.swift */,
 				88020ED827841FE600282FC2 /* MapKitViewController.swift */,
+				8883648927857A2C00FD2AB6 /* CollectionView */,
+				8883648A27857A3900FD2AB6 /* TableView */,
 			);
 			path = Sub;
 			sourceTree = "<group>";
@@ -156,6 +166,24 @@
 				88505B25277DA05400C23FFA /* UIKitCodeExampleUITestsLaunchTests.swift */,
 			);
 			path = UIKitCodeExampleUITests;
+			sourceTree = "<group>";
+		};
+		8883648927857A2C00FD2AB6 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				88836485278578D200FD2AB6 /* CollectionViewController.swift */,
+				8883648727857A1E00FD2AB6 /* UIKitCodeCollectionViewCell.swift */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		8883648A27857A3900FD2AB6 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				8883647D278524A100FD2AB6 /* TableViewController.swift */,
+				888364812785584200FD2AB6 /* UIKitCodeTableViewCell.swift */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,11 +326,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				88505B33277DA0E100C23FFA /* ModalViewController.swift in Sources */,
+				888364822785584200FD2AB6 /* UIKitCodeTableViewCell.swift in Sources */,
 				88505B07277DA05300C23FFA /* ViewController.swift in Sources */,
 				88020ED927841FE600282FC2 /* MapKitViewController.swift in Sources */,
+				8883648827857A1E00FD2AB6 /* UIKitCodeCollectionViewCell.swift in Sources */,
+				88836486278578D200FD2AB6 /* CollectionViewController.swift in Sources */,
 				88020ED72784147700282FC2 /* WebKitViewController.swift in Sources */,
 				88505B03277DA05300C23FFA /* AppDelegate.swift in Sources */,
 				88505B05277DA05300C23FFA /* SceneDelegate.swift in Sources */,
+				8883647E278524A100FD2AB6 /* TableViewController.swift in Sources */,
 				88505B35277DA0EB00C23FFA /* NaviViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

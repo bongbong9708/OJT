@@ -23,6 +23,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        navigationItem.title = "OJT-Storyboard"
         
         textView.delegate = self
         
@@ -31,6 +32,16 @@ class ViewController: UIViewController {
         view.addGestureRecognizer(tapGesture)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
     // 스토리보드로로 Modal 화면 전환하기
     /*
      1. 두번째 VC 생성
@@ -95,6 +106,22 @@ class ViewController: UIViewController {
     // textView에 편집을 종료하는 함수
     @objc func didTapTextView() {
         view.endEditing(true)
+    }
+    
+    @IBAction func webKitViewBtn(_ sender: Any) {
+        guard let webKitVC = self.storyboard?.instantiateViewController(withIdentifier: "webKitVC") as? WebKitViewController else{
+            return
+        }
+        
+        self.navigationController?.pushViewController(webKitVC, animated: true)
+    }
+    
+    @IBAction func mapKitViewBtn(_ sender: Any) {
+        guard let mapKitVC = self.storyboard?.instantiateViewController(withIdentifier: "mapKitVC") as? MapKitViewController else {
+            return
+        }
+        
+        self.navigationController?.pushViewController(mapKitVC, animated: true)
     }
 }
 

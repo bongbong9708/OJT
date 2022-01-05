@@ -21,6 +21,8 @@
 		88020ED52784129300282FC2 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88020ED42784129300282FC2 /* WebKit.framework */; };
 		88505B73277DA42100C23FFA /* NaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88505B72277DA42100C23FFA /* NaviViewController.swift */; };
 		88505B75277DA42F00C23FFA /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88505B74277DA42F00C23FFA /* ModalViewController.swift */; };
+		88836476278519F100FD2AB6 /* WebKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88836475278519F100FD2AB6 /* WebKitViewController.swift */; };
+		88836478278519FD00FD2AB6 /* MapKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88836477278519FD00FD2AB6 /* MapKitViewController.swift */; };
 		8887E7B1277AC5EB00601F8F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8887E7B0277AC5EB00601F8F /* Alamofire */; };
 		AEB42E1E5B6A0A7349851671 /* Pods_SP_PODSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E5EE1AADC4AE93A5BBA4AD /* Pods_SP_PODSTests.framework */; };
 		E260B6693FEFF3B3436C94DD /* Pods_SP_PODS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4691FB95147E27F06D6A71 /* Pods_SP_PODS.framework */; };
@@ -66,6 +68,8 @@
 		88020ED42784129300282FC2 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		88505B72277DA42100C23FFA /* NaviViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaviViewController.swift; sourceTree = "<group>"; };
 		88505B74277DA42F00C23FFA /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
+		88836475278519F100FD2AB6 /* WebKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKitViewController.swift; sourceTree = "<group>"; };
+		88836477278519FD00FD2AB6 /* MapKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitViewController.swift; sourceTree = "<group>"; };
 		8A4691FB95147E27F06D6A71 /* Pods_SP_PODS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SP_PODS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94E5EE1AADC4AE93A5BBA4AD /* Pods_SP_PODSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SP_PODSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E6B7534EDD87A0925855EF /* Pods_SP_PODS_SP_PODSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SP_PODS_SP_PODSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,9 +133,7 @@
 			children = (
 				43ED8B512769A9000054034E /* AppDelegate.swift */,
 				43ED8B532769A9000054034E /* SceneDelegate.swift */,
-				43ED8B552769A9000054034E /* ViewController.swift */,
-				88505B74277DA42F00C23FFA /* ModalViewController.swift */,
-				88505B72277DA42100C23FFA /* NaviViewController.swift */,
+				8883647927851A0500FD2AB6 /* ViewControllers */,
 				43ED8B572769A9000054034E /* Main.storyboard */,
 				43ED8B5A2769A9020054034E /* Assets.xcassets */,
 				43ED8B5C2769A9020054034E /* LaunchScreen.storyboard */,
@@ -166,6 +168,26 @@
 				94E5EE1AADC4AE93A5BBA4AD /* Pods_SP_PODSTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8883647927851A0500FD2AB6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				43ED8B552769A9000054034E /* ViewController.swift */,
+				8883647A27851A1D00FD2AB6 /* Sub */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8883647A27851A1D00FD2AB6 /* Sub */ = {
+			isa = PBXGroup;
+			children = (
+				88505B74277DA42F00C23FFA /* ModalViewController.swift */,
+				88505B72277DA42100C23FFA /* NaviViewController.swift */,
+				88836475278519F100FD2AB6 /* WebKitViewController.swift */,
+				88836477278519FD00FD2AB6 /* MapKitViewController.swift */,
+			);
+			path = Sub;
 			sourceTree = "<group>";
 		};
 		941CB6464B197E0EC308346F /* Pods */ = {
@@ -430,6 +452,8 @@
 			files = (
 				88505B73277DA42100C23FFA /* NaviViewController.swift in Sources */,
 				88505B75277DA42F00C23FFA /* ModalViewController.swift in Sources */,
+				88836478278519FD00FD2AB6 /* MapKitViewController.swift in Sources */,
+				88836476278519F100FD2AB6 /* WebKitViewController.swift in Sources */,
 				43ED8B562769A9000054034E /* ViewController.swift in Sources */,
 				43ED8B522769A9000054034E /* AppDelegate.swift in Sources */,
 				43ED8B542769A9000054034E /* SceneDelegate.swift in Sources */,

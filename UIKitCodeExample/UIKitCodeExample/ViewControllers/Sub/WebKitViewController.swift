@@ -20,6 +20,8 @@ class WebKitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.title = "WebKitView"
+        
         loadUrl()
         configureWebKitView()
         

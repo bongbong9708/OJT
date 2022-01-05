@@ -133,6 +133,7 @@ class ViewController: UIViewController {
         button.setTitle("WebKit View", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button.backgroundColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(moveToWebKitVC), for: .touchUpInside)
         return button
@@ -144,17 +145,42 @@ class ViewController: UIViewController {
         button.setTitle("MapKit View", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button.backgroundColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(moveToMapKitVC), for: .touchUpInside)
         return button
     }()
     
+    // 4-1. CollectionViewController로 가는 버튼 생성
+    let collectionViewBtn: UIButton = {
+        let button = UIButton()
+        button.setTitle("CollectionView", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button.backgroundColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(moveToCollectionVC), for: .touchUpInside)
+        return button
+    }()
+    
+    // 4-2. TableViewController로 가는 버튼 생성
+    let tableViewBtn: UIButton = {
+        let button = UIButton()
+        button.setTitle("TableView", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button.backgroundColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(moveToTableVC), for: .touchUpInside)
+        return button
+    }()
     
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Segue"
+        navigationItem.title = "OJT-UIKitCode"
+        
         view.backgroundColor = .systemBackground
         
         // 서브뷰 순서에 때문에 에러가 발생하여 순서를 알맞게 수정
@@ -175,10 +201,23 @@ class ViewController: UIViewController {
         configureWebkitBtn()        // 3-2. 웹킷뷰
         configureMapkitBtn()        // 3-3. 맵킷뷰
         
+        configureCollectionBtn()    // 4-1. 컬렉션뷰
+        configureTableBtn()         // 4-2. 테이블뷰
+        
         // 다른 view를 tap하면 editing 종료
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapTextView))
         view.addGestureRecognizer(tapGesture)
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     // MARK: - 서브뷰 추가 및 레이아웃 설정
@@ -306,9 +345,9 @@ class ViewController: UIViewController {
         
         // 3-2. webkitBtn 레이아웃 설정
         NSLayoutConstraint.activate([
-            webKitBtn.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 200),
-            webKitBtn.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
-            webKitBtn.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0)
+            webKitBtn.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 50),
+            webKitBtn.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            webKitBtn.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20)
         ])
     }
     
@@ -318,10 +357,34 @@ class ViewController: UIViewController {
         
         // 3-3. mapkitBtn 레이아웃 설정
         NSLayoutConstraint.activate([
-            mapKitBtn.topAnchor.constraint(equalTo: webKitBtn.bottomAnchor, constant: 200),
-            mapKitBtn.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
-            mapKitBtn.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0),
-            mapKitBtn.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -200)
+            mapKitBtn.topAnchor.constraint(equalTo: webKitBtn.bottomAnchor, constant: 50),
+            mapKitBtn.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            mapKitBtn.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
+        ])
+    }
+    
+    func configureCollectionBtn() {
+        // 4-1. scollView에 collectionViewBtn 추가
+        scrollView.addSubview(collectionViewBtn)
+        
+        // 4-1. collectionViewBtn 레이아웃 설정
+        NSLayoutConstraint.activate([
+            collectionViewBtn.topAnchor.constraint(equalTo: mapKitBtn.bottomAnchor, constant: 200),
+            collectionViewBtn.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            collectionViewBtn.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20)
+        ])
+    }
+    
+    func configureTableBtn() {
+        // 4-2. scrollView에 tableViewBtn 추가
+        scrollView.addSubview(tableViewBtn)
+        
+        // 4-2. tableViewBtn 레이아웃 설정
+        NSLayoutConstraint.activate([
+            tableViewBtn.topAnchor.constraint(equalTo: collectionViewBtn.bottomAnchor, constant: 50),
+            tableViewBtn.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            tableViewBtn.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
+            tableViewBtn.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -200)
         ])
     }
     
@@ -367,6 +430,18 @@ class ViewController: UIViewController {
     @objc func moveToMapKitVC() {
         let mapKitVC = MapKitViewController()
         self.navigationController?.pushViewController(mapKitVC, animated: true)
+    }
+    
+    // 4-1. CollectionViewController로 가는 Push 생성
+    @objc func moveToCollectionVC() {
+        let collectionVC = CollectionViewController()
+        self.navigationController?.pushViewController(collectionVC, animated: true)
+    }
+    
+    // 4-2. TableViewController로 가는 Push 생성
+    @objc func moveToTableVC() {
+        let tableVC = TableViewController()
+        self.navigationController?.pushViewController(tableVC, animated: true)
     }
 }
 
