@@ -15,6 +15,7 @@ class ViewController: UIViewController {
         button.setTitle("Present", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button.backgroundColor = .white
         // 버튼의 레이아웃을 코드로 직접 수정 가능하도록 설정
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(moveToModalVC), for: .touchUpInside)
@@ -27,6 +28,7 @@ class ViewController: UIViewController {
         button.setTitle("Push", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        button.backgroundColor = .white
         // 버튼의 레이아웃을 코드로 직접 수정 가능하도록 설정
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(moveToNaviVC), for: .touchUpInside)
@@ -242,8 +244,8 @@ class ViewController: UIViewController {
         // 2-1. modal 버튼 레이아웃 설정
         NSLayoutConstraint.activate([
             modal.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 200),
-            modal.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            modal.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
+            modal.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            modal.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20)
         ])
     }
     
@@ -253,9 +255,9 @@ class ViewController: UIViewController {
         
         // 2-1. navigation 버튼 레이아웃 설정
         NSLayoutConstraint.activate([
-            navigation.topAnchor.constraint(equalTo: modal.topAnchor, constant: 200),
-            navigation.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 0),
-            navigation.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 0)
+            navigation.topAnchor.constraint(equalTo: modal.bottomAnchor, constant: 50),
+            navigation.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
+            navigation.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20)
         ])
     }
     

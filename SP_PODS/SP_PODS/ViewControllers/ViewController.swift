@@ -93,7 +93,7 @@ class ViewController: UIViewController {
 //        self.navigationController?.pushViewController(naviVC, animated: true)
     }
     
-    
+    // TextView의 데이터를 textViewLabel로 전달해주는 버튼
     @IBAction func textViewBtn(_ sender: Any) {
         textViewLabel.text = textView.text
     }
@@ -108,6 +108,7 @@ class ViewController: UIViewController {
         view.endEditing(true)
     }
     
+    // WebKitView로 이동하는 IBAction 버튼
     @IBAction func webKitViewBtn(_ sender: Any) {
         guard let webKitVC = self.storyboard?.instantiateViewController(withIdentifier: "webKitVC") as? WebKitViewController else{
             return
@@ -116,12 +117,50 @@ class ViewController: UIViewController {
         self.navigationController?.pushViewController(webKitVC, animated: true)
     }
     
+    // MapKitView로 이동하는 IBAction 버튼
     @IBAction func mapKitViewBtn(_ sender: Any) {
         guard let mapKitVC = self.storyboard?.instantiateViewController(withIdentifier: "mapKitVC") as? MapKitViewController else {
             return
         }
         
         self.navigationController?.pushViewController(mapKitVC, animated: true)
+    }
+    
+    // Storyboard CollectionView로 이동하는 IBAction 버튼
+    @IBAction func sbCollectionBtn(_ sender: Any) {
+        guard let sbCollectionVC = self.storyboard?.instantiateViewController(withIdentifier: "sbCollectionVC") as? StoryboardCollectionViewController else {
+            return
+        }
+        
+        self.navigationController?.pushViewController(sbCollectionVC, animated: true)
+    }
+    
+    // Xib CollectionView로 이동하는 IBAction 버튼
+    @IBAction func xibCollectionBtn(_ sender: Any) {
+        guard let xibCollectionVC = self.storyboard?.instantiateViewController(withIdentifier: "xibCollectionVC") as? XibCollectionViewController else {
+            return
+        }
+        
+        self.navigationController?.pushViewController(xibCollectionVC, animated: true)
+    }
+    
+    // Storyboard TableView로 이동하는 IBAction 버튼
+    @IBAction func sbTableViewBtn(_ sender: Any) {
+        guard let sbTableVC = self.storyboard?.instantiateViewController(withIdentifier: "sbTableVC") as? StoryboardTableViewController else {
+            return
+        }
+        
+        self.navigationController?.pushViewController(sbTableVC, animated: true)
+    }
+    
+    // Xib TableView로 이동하는 IBAction 버튼
+    @IBAction func xibTableViewBtn(_ sender: Any) {
+        guard let xibTableVC = self.storyboard?.instantiateViewController(withIdentifier: "xibTableVC") as? XibTableViewController else {
+            return
+        }
+        
+        self.navigationController?.pushViewController(xibTableVC, animated: true)
+        
     }
 }
 

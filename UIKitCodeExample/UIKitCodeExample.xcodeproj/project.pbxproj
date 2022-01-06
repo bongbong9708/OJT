@@ -26,6 +26,7 @@
 		888364822785584200FD2AB6 /* UIKitCodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888364812785584200FD2AB6 /* UIKitCodeTableViewCell.swift */; };
 		88836486278578D200FD2AB6 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88836485278578D200FD2AB6 /* CollectionViewController.swift */; };
 		8883648827857A1E00FD2AB6 /* UIKitCodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8883648727857A1E00FD2AB6 /* UIKitCodeCollectionViewCell.swift */; };
+		88EC5B8527866CB50009509E /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EC5B8427866CB50009509E /* Data.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		888364812785584200FD2AB6 /* UIKitCodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitCodeTableViewCell.swift; sourceTree = "<group>"; };
 		88836485278578D200FD2AB6 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		8883648727857A1E00FD2AB6 /* UIKitCodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitCodeCollectionViewCell.swift; sourceTree = "<group>"; };
+		88EC5B8427866CB50009509E /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			children = (
 				88505B02277DA05300C23FFA /* AppDelegate.swift */,
 				88505B04277DA05300C23FFA /* SceneDelegate.swift */,
+				88EC5B8427866CB50009509E /* Data.swift */,
 				88020EDA27841FEE00282FC2 /* ViewControllers */,
 				88505B0B277DA05400C23FFA /* Assets.xcassets */,
 				88505B0D277DA05400C23FFA /* LaunchScreen.storyboard */,
@@ -332,6 +335,7 @@
 				8883648827857A1E00FD2AB6 /* UIKitCodeCollectionViewCell.swift in Sources */,
 				88836486278578D200FD2AB6 /* CollectionViewController.swift in Sources */,
 				88020ED72784147700282FC2 /* WebKitViewController.swift in Sources */,
+				88EC5B8527866CB50009509E /* Data.swift in Sources */,
 				88505B03277DA05300C23FFA /* AppDelegate.swift in Sources */,
 				88505B05277DA05300C23FFA /* SceneDelegate.swift in Sources */,
 				8883647E278524A100FD2AB6 /* TableViewController.swift in Sources */,

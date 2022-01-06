@@ -89,7 +89,7 @@ class UIKitCodeTableViewCell: UITableViewCell {
             typeLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 20),
             typeLabel.leadingAnchor.constraint(equalTo: restaurantImage.trailingAnchor, constant: 20),
             typeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            typeLabel.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: 160),
+//            typeLabel.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: 160),
             typeLabel.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
