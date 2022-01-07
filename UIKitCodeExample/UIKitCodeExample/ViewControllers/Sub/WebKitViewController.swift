@@ -7,13 +7,13 @@
 
 import UIKit
 import WebKit
+import SnapKit
 
 class WebKitViewController: UIViewController {
 
     // 3-2. WebKitView 생성
     let webKitView: WKWebView = {
         let webkit = WKWebView()
-        webkit.translatesAutoresizingMaskIntoConstraints = false
         return webkit
     }()
     
@@ -26,7 +26,7 @@ class WebKitViewController: UIViewController {
         configureWebKitView()
         
         // 스와이프를 통해 뒤로가기, 앞으로가기를 할 수 있게 해주는 설정값
-        webKitView.allowsBackForwardNavigationGestures = true
+//        webKitView.allowsBackForwardNavigationGestures = true
     }
     
     func loadUrl() {
@@ -44,12 +44,15 @@ class WebKitViewController: UIViewController {
         view.addSubview(webKitView)
         
         // webKitView 레이아웃 설정
-        NSLayoutConstraint.activate([
-            webKitView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            webKitView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            webKitView.topAnchor.constraint(equalTo: view.topAnchor),
-            webKitView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+//        NSLayoutConstraint.activate([
+//            webKitView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            webKitView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            webKitView.topAnchor.constraint(equalTo: view.topAnchor),
+//            webKitView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//        ])
+        webKitView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
 

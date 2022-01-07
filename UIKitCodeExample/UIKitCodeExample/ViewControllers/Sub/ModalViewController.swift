@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ModalViewController: UIViewController {
 
@@ -27,9 +28,13 @@ class ModalViewController: UIViewController {
         view.addSubview(button)
         
         // 레이아웃 설정
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        button.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
+//        button.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        button.snp.makeConstraints { make in
+            make.centerX.equalTo(view.safeAreaLayoutGuide.snp.centerX)
+            make.centerY.equalTo(view.safeAreaLayoutGuide.snp.centerY)
+        }
     }
     
     // VC로 돌아가는 dismiss 생성

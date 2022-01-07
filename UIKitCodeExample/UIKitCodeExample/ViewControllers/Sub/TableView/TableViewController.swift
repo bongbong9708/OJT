@@ -6,13 +6,13 @@
 //
 
 import UIKit
+import SnapKit
 
 class TableViewController: UIViewController {
     
     // 테이블 뷰 생성
     let tableView: UITableView = {
         let table = UITableView()
-        table.translatesAutoresizingMaskIntoConstraints = false
         // UIKitCodeTableViewCell을 tableView에 등록
         table.register(UIKitCodeTableViewCell.self, forCellReuseIdentifier: UIKitCodeTableViewCell.identifier)
         return table
@@ -36,12 +36,15 @@ class TableViewController: UIViewController {
         view.addSubview(tableView)
         
         // tableView 레이아웃 설정
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+//        NSLayoutConstraint.activate([
+//            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+//            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//        ])
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
 }

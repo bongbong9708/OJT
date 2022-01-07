@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class UIKitCodeTableViewCell: UITableViewCell {
 
@@ -27,7 +28,6 @@ class UIKitCodeTableViewCell: UITableViewCell {
     // 이미지 뷰 생성
     let restaurantImage: UIImageView = {
         let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
@@ -36,7 +36,6 @@ class UIKitCodeTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 20)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -45,7 +44,6 @@ class UIKitCodeTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 20)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -54,11 +52,8 @@ class UIKitCodeTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 20)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    
     
     func configureCell() {
         contentView.addSubview(restaurantImage)
@@ -66,32 +61,60 @@ class UIKitCodeTableViewCell: UITableViewCell {
         contentView.addSubview(locationLabel)
         contentView.addSubview(typeLabel)
         
-        NSLayoutConstraint.activate([
+//        NSLayoutConstraint.activate([
             // 이미지 레이아웃 설정
-            restaurantImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            restaurantImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            restaurantImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
-            restaurantImage.widthAnchor.constraint(equalTo: restaurantImage.heightAnchor),
+//            restaurantImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+//            restaurantImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+//            restaurantImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+//            restaurantImage.widthAnchor.constraint(equalTo: restaurantImage.heightAnchor),
             
             // namLabel 레이아웃 설정
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
-            nameLabel.leadingAnchor.constraint(equalTo: restaurantImage.trailingAnchor, constant: 20),
-            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            nameLabel.heightAnchor.constraint(equalToConstant: 30),
+//            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
+//            nameLabel.leadingAnchor.constraint(equalTo: restaurantImage.trailingAnchor, constant: 20),
+//            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+//            nameLabel.heightAnchor.constraint(equalToConstant: 30),
             
             // locationLabel 레이아웃 설정
-            locationLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
-            locationLabel.leadingAnchor.constraint(equalTo: restaurantImage.trailingAnchor, constant: 20),
-            locationLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            locationLabel.heightAnchor.constraint(equalToConstant: 30),
+//            locationLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
+//            locationLabel.leadingAnchor.constraint(equalTo: restaurantImage.trailingAnchor, constant: 20),
+//            locationLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+//            locationLabel.heightAnchor.constraint(equalToConstant: 30),
             
             // typeLabel 레이아웃 설정
-            typeLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 20),
-            typeLabel.leadingAnchor.constraint(equalTo: restaurantImage.trailingAnchor, constant: 20),
-            typeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-//            typeLabel.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: 160),
-            typeLabel.heightAnchor.constraint(equalToConstant: 30)
-        ])
+//            typeLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 20),
+//            typeLabel.leadingAnchor.constraint(equalTo: restaurantImage.trailingAnchor, constant: 20),
+//            typeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+////            typeLabel.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: 160),
+//            typeLabel.heightAnchor.constraint(equalToConstant: 30)
+//        ])
+        
+        restaurantImage.snp.makeConstraints { make in
+            make.top.leading.equalToSuperview().offset(20)
+            make.bottom.equalToSuperview().offset(-20)
+            make.width.equalTo(restaurantImage.snp.height)
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(30)
+            make.leading.equalTo(restaurantImage.snp.trailing).offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.height.equalTo(30)
+        }
+        
+        locationLabel.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(20)
+            make.leading.equalTo(restaurantImage.snp.trailing).offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.height.equalTo(30)
+        }
+        
+        typeLabel.snp.makeConstraints { make in
+            make.top.equalTo(locationLabel.snp.bottom).offset(20)
+            make.leading.equalTo(restaurantImage.snp.trailing).offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.height.equalTo(30)
+        }
+        
     }
     
 }

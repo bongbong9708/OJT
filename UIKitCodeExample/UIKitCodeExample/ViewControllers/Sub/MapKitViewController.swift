@@ -7,20 +7,19 @@
 
 import UIKit
 import MapKit
+import SnapKit
 
 class MapKitViewController: UIViewController, CLLocationManagerDelegate {
 
     // 3-3. MapKitView 생성
     let mapKit: MKMapView = {
         let map = MKMapView()
-        map.translatesAutoresizingMaskIntoConstraints = false
         return map
     }()
     
     // 현재 위치 나타낼 Label 생성
     let locationLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -52,11 +51,18 @@ class MapKitViewController: UIViewController, CLLocationManagerDelegate {
         view.addSubview(mapKit)
         
         // 레이아웃 설정
-        NSLayoutConstraint.activate([
-            mapKit.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            mapKit.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            mapKit.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20)
-        ])
+//        NSLayoutConstraint.activate([
+//            mapKit.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+//            mapKit.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+//            mapKit.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20)
+//        ])
+        
+        mapKit.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            
+        }
     }
     
     func configureLocationLabel() {
@@ -64,13 +70,20 @@ class MapKitViewController: UIViewController, CLLocationManagerDelegate {
         view.addSubview(locationLabel)
         
         // 레이아웃 설정
-        NSLayoutConstraint.activate([
-            locationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            locationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            locationLabel.topAnchor.constraint(equalTo: mapKit.bottomAnchor, constant: 50),
-            locationLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
-            locationLabel.heightAnchor.constraint(equalToConstant: 30)
-        ])
+//        NSLayoutConstraint.activate([
+//            locationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+//            locationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+//            locationLabel.topAnchor.constraint(equalTo: mapKit.bottomAnchor, constant: 50),
+//            locationLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+//            locationLabel.heightAnchor.constraint(equalToConstant: 30)
+//        ])
+        locationLabel.snp.makeConstraints { make in
+            make.top.equalTo(mapKit.snp.bottom).offset(50)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.bottom.equalToSuperview().offset(-50)
+            make.height.equalTo(30)
+        }
     }
     
     // 위도와 경도, 스팬(영역 폭)을 입력받아 지도에 표시

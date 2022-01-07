@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class CollectionViewController: UIViewController {
 
@@ -17,7 +18,6 @@ class CollectionViewController: UIViewController {
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -42,12 +42,16 @@ class CollectionViewController: UIViewController {
         view.addSubview(collectionView)
         
         // 컬렉션 뷰 레이아웃 설정
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+//        NSLayoutConstraint.activate([
+//            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+//            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//        ])
+        
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
 
