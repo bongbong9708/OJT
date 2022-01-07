@@ -26,6 +26,9 @@
 		888364822785584200FD2AB6 /* UIKitCodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 888364812785584200FD2AB6 /* UIKitCodeTableViewCell.swift */; };
 		88836486278578D200FD2AB6 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88836485278578D200FD2AB6 /* CollectionViewController.swift */; };
 		8883648827857A1E00FD2AB6 /* UIKitCodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8883648727857A1E00FD2AB6 /* UIKitCodeCollectionViewCell.swift */; };
+		88AAB82D2786E10600ED24F3 /* NotiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AAB82C2786E10600ED24F3 /* NotiViewController.swift */; };
+		88AAB82F2787C81A00ED24F3 /* DelegateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AAB82E2787C81A00ED24F3 /* DelegateViewController.swift */; };
+		88AAB8312787C83500ED24F3 /* DispatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AAB8302787C83500ED24F3 /* DispatchViewController.swift */; };
 		88EC5B8527866CB50009509E /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EC5B8427866CB50009509E /* Data.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +70,9 @@
 		888364812785584200FD2AB6 /* UIKitCodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitCodeTableViewCell.swift; sourceTree = "<group>"; };
 		88836485278578D200FD2AB6 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		8883648727857A1E00FD2AB6 /* UIKitCodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitCodeCollectionViewCell.swift; sourceTree = "<group>"; };
+		88AAB82C2786E10600ED24F3 /* NotiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotiViewController.swift; sourceTree = "<group>"; };
+		88AAB82E2787C81A00ED24F3 /* DelegateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateViewController.swift; sourceTree = "<group>"; };
+		88AAB8302787C83500ED24F3 /* DispatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchViewController.swift; sourceTree = "<group>"; };
 		88EC5B8427866CB50009509E /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,6 +122,9 @@
 				88020ED827841FE600282FC2 /* MapKitViewController.swift */,
 				8883648927857A2C00FD2AB6 /* CollectionView */,
 				8883648A27857A3900FD2AB6 /* TableView */,
+				88AAB8302787C83500ED24F3 /* DispatchViewController.swift */,
+				88AAB82E2787C81A00ED24F3 /* DelegateViewController.swift */,
+				88AAB82C2786E10600ED24F3 /* NotiViewController.swift */,
 			);
 			path = Sub;
 			sourceTree = "<group>";
@@ -331,6 +340,7 @@
 				88505B33277DA0E100C23FFA /* ModalViewController.swift in Sources */,
 				888364822785584200FD2AB6 /* UIKitCodeTableViewCell.swift in Sources */,
 				88505B07277DA05300C23FFA /* ViewController.swift in Sources */,
+				88AAB82F2787C81A00ED24F3 /* DelegateViewController.swift in Sources */,
 				88020ED927841FE600282FC2 /* MapKitViewController.swift in Sources */,
 				8883648827857A1E00FD2AB6 /* UIKitCodeCollectionViewCell.swift in Sources */,
 				88836486278578D200FD2AB6 /* CollectionViewController.swift in Sources */,
@@ -338,6 +348,8 @@
 				88EC5B8527866CB50009509E /* Data.swift in Sources */,
 				88505B03277DA05300C23FFA /* AppDelegate.swift in Sources */,
 				88505B05277DA05300C23FFA /* SceneDelegate.swift in Sources */,
+				88AAB82D2786E10600ED24F3 /* NotiViewController.swift in Sources */,
+				88AAB8312787C83500ED24F3 /* DispatchViewController.swift in Sources */,
 				8883647E278524A100FD2AB6 /* TableViewController.swift in Sources */,
 				88505B35277DA0EB00C23FFA /* NaviViewController.swift in Sources */,
 			);
